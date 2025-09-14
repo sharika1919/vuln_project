@@ -1,0 +1,14 @@
+# Auto Security Scanner Requirements
+# Core dependencies for the Python security scanner
+
+# No external dependencies required - uses only Python standard library
+# The scanner relies on external tools that should be installed separately:
+# - porch-pirate (install via: pipx install porch-pirate)
+# - subfinder (install via: go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest)
+# - nuclei (install via: go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest)
+# - jq (install via: brew install jq or apt-get install jq)
+
+# Optional: For enhanced functionality, you may want to install:
+# requests>=2.28.0  # For HTTP requests if needed in future versions
+# colorama>=0.4.4   # For colored terminal output
+# tqdm>=4.64.0      # For progress bars
