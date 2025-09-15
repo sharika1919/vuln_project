@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Auto Security Scanner - Professional Python Implementation
-Integrates Porch-pirate, Subfinder, and Nuclei for comprehensive security scanning
+AI-Powered Reconnaissance Tool - Professional Implementation
+Integrates Subfinder, Amass, HTTPX, and other tools for comprehensive reconnaissance
 """
 
 import os
@@ -60,12 +60,15 @@ class ToolManager:
     def __init__(self, logger: logging.Logger = None):
         self.logger = logger
         self.tools = {
-            'porch-pirate': self._check_porch_pirate,
             'subfinder': self._check_subfinder,
-            'nuclei': self._check_nuclei,
-            'osmedeus': self._check_osmedeus,
+            'amass': self._check_amass,
+            'httpx': self._check_httpx,
+            'waybackurls': self._check_waybackurls,
+            'gau': self._check_gau,
+            'jq': self._check_jq,
             'rengine': self._check_rengine,
-            'jq': self._check_jq
+            'osmedeus': self._check_osmedeus,
+            'porch-pirate': self._check_porch_pirate
         }
         self.tool_paths = {}
         self._detect_tools()
@@ -75,28 +78,25 @@ class ToolManager:
         for tool, checker in self.tools.items():
             self.tool_paths[tool] = checker()
     
-    def _check_porch_pirate(self) -> Optional[str]:
-        """Check if porch-pirate is available"""
-        return shutil.which('porch-pirate')
-    
     def _check_subfinder(self) -> Optional[str]:
         """Check if subfinder is available"""
         return shutil.which('subfinder')
     
-    def _check_nuclei(self) -> Optional[str]:
-        """Check if nuclei is available"""
-        return shutil.which('nuclei')
+    def _check_amass(self) -> Optional[str]:
+        """Check if amass is available"""
+        return shutil.which('amass')
     
-    def _check_osmedeus(self) -> Optional[str]:
-        """Check if osmedeus is available"""
-        return shutil.which('osmedeus')
+    def _check_httpx(self) -> Optional[str]:
+        """Check if httpx is available"""
+        return shutil.which('httpx')
     
-    def _check_rengine(self) -> Optional[str]:
-        """Check if rengine is available"""
-        # Check for rengine CLI first
-        rengine_path = shutil.which('rengine')
-        if rengine_path:
-            return rengine_path
+    def _check_waybackurls(self) -> Optional[str]:
+        """Check if waybackurls is available"""
+        return shutil.which('waybackurls')
+    
+    def _check_gau(self) -> Optional[str]:
+        """Check if gau is available"""
+        return shutil.which('gau')
         
         # Check if docker is available and running
         docker_path = shutil.which('docker')
@@ -154,6 +154,54 @@ class ToolManager:
     def _check_jq(self) -> Optional[str]:
         """Check if jq is available"""
         return shutil.which('jq')
+        
+    def _check_rengine(self) -> Optional[str]:
+        """Check if rengine is available"""
+        # First check if rengine CLI is available
+        rengine_path = shutil.which('rengine')
+        if rengine_path:
+            return rengine_path
+            
+        # Check if docker is available and rengine container is running
+        docker_path = shutil.which('docker')
+        if docker_path:
+            try:
+                result = subprocess.run(
+                    ['docker', 'ps', '--format', '{{.Names}}'],
+                    capture_output=True,
+                    text=True
+                )
+                if 'rengine' in result.stdout:
+                    return 'docker-compose -f /path/to/rengine/docker-compose.yml exec rengine rengine'
+            except Exception:
+                pass
+        return None
+        
+    def _check_osmedeus(self) -> Optional[str]:
+        """Check if osmedeus is available"""
+        # Check if osmedeus binary is in PATH
+        osmedeus_path = shutil.which('osmedeus')
+        if osmedeus_path:
+            return osmedeus_path
+            
+        # Check for docker installation
+        docker_path = shutil.which('docker')
+        if docker_path:
+            try:
+                result = subprocess.run(
+                    ['docker', 'ps', '--format', '{{.Names}}'],
+                    capture_output=True,
+                    text=True
+                )
+                if 'osmedeus' in result.stdout:
+                    return 'docker exec -it osmedeus ./osmedeus.py'
+            except Exception:
+                pass
+        return None
+        
+    def _check_porch_pirate(self) -> Optional[str]:
+        """Check if porch-pirate is available"""
+        return shutil.which('porch-pirate')
     
     def is_available(self, tool: str) -> bool:
         """Check if a tool is available"""
@@ -166,6 +214,30 @@ class ToolManager:
 
 class SecurityScanner:
     """Main security scanner class with AI integration"""
+    
+    # List of well-known secure domains (top 1000 alexa + major services)
+    SECURE_DOMAINS = [
+        # Google services
+        'google.com', 'youtube.com', 'gmail.com', 'googleapis.com', 'gstatic.com',
+        # Social media
+        'facebook.com', 'instagram.com', 'twitter.com', 'linkedin.com', 'pinterest.com',
+        # E-commerce
+        'amazon.com', 'ebay.com', 'walmart.com', 'alibaba.com', 'etsy.com',
+        # Cloud providers
+        'aws.amazon.com', 'cloud.google.com', 'azure.microsoft.com', 'digitalocean.com',
+        # Major tech
+        'microsoft.com', 'apple.com', 'adobe.com', 'oracle.com', 'intel.com',
+        # Streaming
+        'netflix.com', 'spotify.com', 'disneyplus.com', 'hulu.com', 'twitch.tv',
+        # Security-focused
+        'cloudflare.com', 'akamai.com', 'fastly.net', 'cloudfront.net',
+        # Banking/Finance
+        'paypal.com', 'stripe.com', 'squareup.com', 'visa.com', 'mastercard.com',
+        # Government
+        'usa.gov', 'gov.uk', 'canada.ca', 'europa.eu',
+        # CDNs
+        'cloudflare.com', 'akamaihd.net', 'fastly.net', 'cloudflare.net'
+    ]
     
     def __init__(self, target: str, output_dir: Optional[Path] = None, fast_mode: bool = False, verbose: bool = False):
         self.target = self._clean_target(target)
@@ -190,6 +262,9 @@ class SecurityScanner:
         self.tool_manager = ToolManager(self.logger)
         self.ai_engine = AISecurityEngine(self.logger)
         self.results: List[ScanResult] = []
+        
+        # Check if target is a well-known secure site
+        self.is_secure_site = self._is_well_known_secure_site(self.target)
     
     def _clean_target(self, target: str) -> str:
         """Clean target URL/domain for safe file naming"""
@@ -225,6 +300,44 @@ class SecurityScanner:
         logger.addHandler(file_handler)
         
         return logger
+    
+    def _is_well_known_secure_site(self, url: str) -> bool:
+        """
+        Check if the URL belongs to a well-known secure site.
+        Returns:
+            bool: True if the site is a well-known secure site, False otherwise
+        """
+        try:
+            # Handle case where URL might already be a domain without scheme
+            if not (url.startswith('http://') or url.startswith('https://')):
+                url = 'https://' + url
+                
+            parsed = urlparse(url)
+            domain = parsed.netloc.lower()
+            
+            if not domain:  # If parsing failed, use the original URL
+                domain = url.lower()
+            
+            # Remove port if present
+            domain = domain.split(':')[0]
+            
+            # Remove www. if present for better matching
+            if domain.startswith('www.'):
+                domain = domain[4:]
+            
+            # Check for exact matches or subdomains of secure domains
+            for secure_domain in self.SECURE_DOMAINS:
+                if (domain == secure_domain or 
+                    domain.endswith('.' + secure_domain) or
+                    secure_domain in domain and any(domain.endswith('.' + tld) for tld in ['.com', '.net', '.org', '.io', '.gov', '.edu'])):
+                    self.logger.info(f"Identified as well-known secure site: {domain}")
+                    return True
+            
+            return False
+            
+        except Exception as e:
+            self.logger.warning(f"Error checking secure site status for {url}: {str(e)}")
+            return False
     
     def run_porch_pirate(self) -> ScanResult:
         """Run porch-pirate reconnaissance"""
@@ -301,354 +414,726 @@ class SecurityScanner:
             self.logger.error(error_msg)
             return ScanResult('subfinder', self.target, False, error=error_msg), [self.target]
     
-    def run_osmedeus(self) -> ScanResult:
-        """Run Osmedeus comprehensive reconnaissance"""
-        self.logger.info(f"[3/5] Starting Osmedeus reconnaissance on {self.target}...")
+    def run_rengine(self) -> Tuple[ScanResult, List[str]]:
+        """Run ReNgine for comprehensive reconnaissance"""
+        if not self.tool_manager.tool_paths.get('rengine'):
+            return ScanResult(
+                tool='rengine',
+                target=self.target,
+                success=False,
+                error="ReNgine not found. Install from: https://github.com/yogeshojha/rengine"
+            ), [self.target]
         
-        if not self.tool_manager.is_available('osmedeus'):
-            error_msg = "Osmedeus not found. Install with: go install -v github.com/j3ssie/osmedeus@latest"
-            self.logger.warning(error_msg)
-            return ScanResult('osmedeus', self.target, False, error=error_msg)
+        output_dir = self.output_dir / 'rengine'
+        output_dir.mkdir(exist_ok=True)
+        output_file = output_dir / 'scan_results.json'
+        
+        cmd = [
+            self.tool_manager.tool_paths['rengine'],
+            '--target', self.target,
+            '--output', str(output_file),
+            '--threads', '10',
+            '--timeout', '1800'  # 30 minutes
+        ]
         
         try:
-            output_file = self.output_dir / 'osmedeus_results.json'
-            workspace_dir = self.output_dir / 'osmedeus_workspace'
-            workspace_dir.mkdir(exist_ok=True)
+            self.logger.info(f"Running ReNgine on {self.target}")
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                timeout=2700  # 45 minutes
+            )
             
-            # Run osmedeus with general workflow
-            cmd = [
-                self.tool_manager.tool_paths['osmedeus'],
-                'scan', '-t', self.target,
-                '-w', str(workspace_dir),
-                '--timeout', '1800',  # 30 minutes timeout
-                '-o', str(output_file)
-            ]
+            if result.returncode != 0:
+                return ScanResult(
+                    tool='rengine',
+                    target=self.target,
+                    success=False,
+                    error=result.stderr or "ReNgine scan failed"
+                ), [self.target]
             
-            self.logger.info("Running Osmedeus comprehensive scan (this may take a while)...")
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=2400)  # 40 min timeout
-            
-            findings_count = 0
+            # Parse results and extract subdomains
+            subdomains = set([self.target])
             if output_file.exists():
-                try:
-                    with open(output_file, 'r') as f:
+                with open(output_file, 'r') as f:
+                    try:
                         data = json.load(f)
-                        findings_count = len(data.get('results', []))
-                except:
-                    findings_count = 1 if output_file.stat().st_size > 0 else 0
+                        if 'subdomains' in data:
+                            subdomains.update(data['subdomains'])
+                    except json.JSONDecodeError:
+                        self.logger.warning("Failed to parse ReNgine JSON output")
             
-            self.logger.info("Osmedeus scan completed")
-            return ScanResult('osmedeus', self.target, True, str(output_file), findings_count=findings_count)
+            return ScanResult(
+                tool='rengine',
+                target=self.target,
+                success=True,
+                output_file=str(output_file),
+                findings_count=len(subdomains)
+            ), list(subdomains)
             
         except subprocess.TimeoutExpired:
-            error_msg = "Osmedeus scan timed out"
-            self.logger.error(error_msg)
-            return ScanResult('osmedeus', self.target, False, error=error_msg)
+            return ScanResult(
+                tool='rengine',
+                target=self.target,
+                success=False,
+                error="ReNgine scan timed out after 45 minutes"
+            ), [self.target]
         except Exception as e:
-            error_msg = f"Osmedeus scan failed: {str(e)}"
-            self.logger.error(error_msg)
-            return ScanResult('osmedeus', self.target, False, error=error_msg)
+            return ScanResult(
+                tool='rengine',
+                target=self.target,
+                success=False,
+                error=str(e)
+            ), [self.target]
     
-    def run_rengine(self) -> Tuple[ScanResult, List[str]]:
-        """Run ReNgine reconnaissance engine"""
-        self.logger.info(f"[4/5] Starting ReNgine reconnaissance on {self.target}...")
+    def run_osmedeus(self) -> ScanResult:
+        """Run Osmedeus for comprehensive scanning"""
+        if not self.tool_manager.tool_paths.get('osmedeus'):
+            return ScanResult(
+                tool='osmedeus',
+                target=self.target,
+                success=False,
+                error="Osmedeus not found. Install from: https://github.com/j3ssie/osmedeus"
+            )
         
-        if not self.tool_manager.is_available('rengine'):
-            error_msg = "ReNgine not found. Install with Docker: docker pull yogeshojha/rengine"
-            self.logger.warning(error_msg)
-            return ScanResult('rengine', self.target, False, error=error_msg), [self.target]
+        output_dir = self.output_dir / 'osmedeus'
+        output_dir.mkdir(exist_ok=True)
         
-        try:
-            output_file = self.output_dir / 'rengine_results.json'
-            subdomains_file = self.output_dir / 'rengine_subdomains.txt'
-            rengine_type = self.tool_manager.tool_paths['rengine']
-            
-            if rengine_type == 'docker':
-                return self._run_rengine_docker(output_file, subdomains_file)
-            elif rengine_type == 'api':
-                return self._run_rengine_api(output_file, subdomains_file)
-            elif rengine_type == 'builtin':
-                return self._run_rengine_builtin(output_file, subdomains_file)
-            else:
-                # CLI version
-                return self._run_rengine_cli(output_file, subdomains_file, rengine_type)
-                
-        except Exception as e:
-            error_msg = f"ReNgine scan failed: {str(e)}"
-            self.logger.error(error_msg)
-            return ScanResult('rengine', self.target, False, error=error_msg), [self.target]
-    
-    def _run_rengine_docker(self, output_file, subdomains_file):
-        """Run ReNgine via Docker"""
         cmd = [
-            'docker', 'run', '--rm',
-            '-v', f"{self.output_dir}:/output",
-            'yogeshojha/rengine',
-            'python3', 'manage.py', 'scan',
-            '--domain', self.target,
-            '--output', '/output/rengine_results.json'
+            self.tool_manager.tool_paths['osmedeus'],
+            '-t', self.target,
+            '-o', str(output_dir),
+            '-m', 'recon,scan,vuln',
+            '-timeout', '3600'  # 1 hour
         ]
         
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=1800)
-        return self._process_rengine_results(output_file, subdomains_file)
-    
-    def _run_rengine_api(self, output_file, subdomains_file):
-        """Run ReNgine via API"""
         try:
-            import requests
+            self.logger.info(f"Running Osmedeus on {self.target}")
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                timeout=7200  # 2 hours
+            )
             
-            # Submit scan request
-            response = requests.post('http://localhost:8000/api/scan/', 
-                                   json={'domain': self.target}, timeout=30)
+            if result.returncode != 0:
+                return ScanResult(
+                    tool='osmedeus',
+                    target=self.target,
+                    success=False,
+                    error=result.stderr or "Osmedeus scan failed"
+                )
             
-            if response.status_code == 200:
-                scan_id = response.json().get('scan_id')
-                
-                # Poll for results
-                import time
-                for _ in range(60):  # Wait up to 30 minutes
-                    time.sleep(30)
-                    status_response = requests.get(f'http://localhost:8000/api/scan/{scan_id}/')
-                    if status_response.json().get('status') == 'completed':
-                        results = status_response.json().get('results', {})
-                        
-                        # Save results
-                        with open(output_file, 'w') as f:
-                            json.dump(results, f, indent=2)
-                        
-                        return self._process_rengine_results(output_file, subdomains_file)
-                
-                # Timeout
-                return ScanResult('rengine', self.target, False, error="API scan timeout"), [self.target]
-            else:
-                return ScanResult('rengine', self.target, False, error="API request failed"), [self.target]
-                
+            # Count findings
+            findings_count = 0
+            report_file = output_dir / 'final_report.json'
+            if report_file.exists():
+                with open(report_file, 'r') as f:
+                    try:
+                        data = json.load(f)
+                        findings_count = len(data.get('findings', []))
+                    except json.JSONDecodeError:
+                        self.logger.warning("Failed to parse Osmedeus JSON report")
+            
+            return ScanResult(
+                tool='osmedeus',
+                target=self.target,
+                success=True,
+                output_file=str(report_file) if report_file.exists() else None,
+                findings_count=findings_count
+            )
+            
+        except subprocess.TimeoutExpired:
+            return ScanResult(
+                tool='osmedeus',
+                target=self.target,
+                success=False,
+                error="Osmedeus scan timed out after 2 hours"
+            )
         except Exception as e:
-            return ScanResult('rengine', self.target, False, error=f"API error: {e}"), [self.target]
+            return ScanResult(
+                tool='osmedeus',
+                target=self.target,
+                success=False,
+                error=str(e)
+            )
     
-    def _run_rengine_builtin(self, output_file, subdomains_file):
-        """Run built-in reconnaissance as ReNgine fallback"""
-        self.logger.info("Using built-in reconnaissance (ReNgine fallback)")
+    def run_porch_pirate(self) -> ScanResult:
+        """Run Porch-pirate for cloud service enumeration"""
+        if not self.tool_manager.tool_paths.get('porch-pirate'):
+            return ScanResult(
+                tool='porch-pirate',
+                target=self.target,
+                success=False,
+                error="Porch-pirate not found. Install with: pipx install porch-pirate"
+            )
         
-        # Perform basic subdomain enumeration
-        subdomains = self._builtin_subdomain_discovery()
+        output_dir = self.output_dir / 'porch_pirate'
+        output_dir.mkdir(exist_ok=True)
+        output_file = output_dir / 'results.json'
         
-        # Create mock ReNgine results
-        results = {
-            'target': self.target,
-            'subdomains': subdomains,
-            'scan_type': 'builtin_fallback',
-            'timestamp': datetime.now().isoformat(),
-            'results': [
-                {
-                    'type': 'subdomain',
-                    'value': sub,
-                    'source': 'builtin'
-                } for sub in subdomains
-            ]
-        }
-        
-        # Save results
-        with open(output_file, 'w') as f:
-            json.dump(results, f, indent=2)
-        
-        with open(subdomains_file, 'w') as f:
-            for subdomain in subdomains:
-                f.write(f"{subdomain}\n")
-        
-        self.logger.info(f"Built-in reconnaissance found {len(subdomains)} domains")
-        self.logger.info("ReNgine (builtin) scan completed")
-        
-        return ScanResult('rengine', self.target, True, str(output_file), findings_count=len(subdomains)), subdomains
-    
-    def _run_rengine_cli(self, output_file, subdomains_file, cli_path):
-        """Run ReNgine CLI version"""
-        cmd = [cli_path, 'scan', '-d', self.target, '-o', str(output_file)]
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=1800)
-        return self._process_rengine_results(output_file, subdomains_file)
-    
-    def _process_rengine_results(self, output_file, subdomains_file):
-        """Process ReNgine results and extract subdomains"""
-        subdomains = [self.target]  # Default to main domain
-        findings_count = 0
-        
-        if output_file.exists():
-            try:
-                with open(output_file, 'r') as f:
-                    data = json.load(f)
-                    
-                # Extract subdomains from ReNgine output
-                if 'subdomains' in data:
-                    found_subdomains = data['subdomains'][:20]  # Limit to 20
-                    if found_subdomains:
-                        subdomains = found_subdomains
-                        # Save subdomains to separate file
-                        with open(subdomains_file, 'w') as sf:
-                            for subdomain in found_subdomains:
-                                sf.write(f"{subdomain}\n")
-                
-                findings_count = len(data.get('results', []))
-            except Exception as e:
-                self.logger.warning(f"Could not parse ReNgine results: {e}")
-        
-        subdomain_count = len(subdomains)
-        if subdomain_count > 1:
-            self.logger.info(f"ReNgine found {subdomain_count} subdomains")
-        else:
-            self.logger.info("ReNgine completed, using target domain only")
-        
-        self.logger.info("ReNgine scan completed")
-        return ScanResult('rengine', self.target, True, str(output_file), findings_count=findings_count), subdomains
-    
-    def _builtin_subdomain_discovery(self):
-        """Built-in subdomain discovery as ReNgine fallback"""
-        common_subdomains = [
-            'www', 'mail', 'ftp', 'admin', 'test', 'dev', 'staging', 'api', 
-            'blog', 'shop', 'store', 'support', 'help', 'docs', 'cdn', 'static'
+        cmd = [
+            self.tool_manager.tool_paths['porch-pirate'],
+            '--target', self.target,
+            '--output', str(output_file),
+            '--threads', '5',
+            '--timeout', '900'  # 15 minutes
         ]
         
-        found_subdomains = [self.target]
-        
-        # Try common subdomains
-        for sub in common_subdomains:
-            subdomain = f"{sub}.{self.target}"
-            try:
-                import socket
-                socket.gethostbyname(subdomain)
-                found_subdomains.append(subdomain)
-            except socket.gaierror:
-                pass  # Subdomain doesn't exist
-        
-        return found_subdomains[:10]  # Limit to 10 for performance
-
-    def run_nuclei_single(self, domain: str) -> ScanResult:
-        """Run nuclei scan on a single domain with speed optimizations"""
-        if not self.tool_manager.is_available('nuclei'):
-            return ScanResult('nuclei', domain, False, error="Nuclei not found")
-        
         try:
-            # Clean domain name for filename
-            clean_domain = re.sub(r'[:/]', '_', domain)
-            output_file = self.output_dir / f'nuclei_{clean_domain}.txt'
+            self.logger.info(f"Running Porch-pirate on {self.target}")
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                timeout=1200  # 20 minutes
+            )
             
-            # Ultra-fast Nuclei command for speed + accuracy
-            cmd = [
-                self.tool_manager.tool_paths['nuclei'],
-                '-u', f'http://{domain}',
-                '-o', str(output_file),
-                '-rate-limit', '300',        # Much higher rate limit
-                '-timeout', '3',             # Very short timeout per request
-                '-retries', '1',             # Minimal retries
-                '-concurrency', '50',        # High concurrency
-                '-bulk-size', '50',          # Large bulk processing
-                '-t', 'http/vulnerabilities/', # Target specific vulns
-                '-t', 'http/exposures/',     # Common exposures
-                '-t', 'http/misconfiguration/', # Misconfigurations
-                '-severity', 'high,critical,medium', # Important findings only
-                '-silent'                    # Reduce output noise
-            ]
+            if result.returncode != 0:
+                return ScanResult(
+                    tool='porch-pirate',
+                    target=self.target,
+                    success=False,
+                    error=result.stderr or "Porch-pirate scan failed"
+                )
             
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=180)  # 3 min timeout
-            
+            # Count findings
             findings_count = 0
             if output_file.exists():
                 with open(output_file, 'r') as f:
-                    findings_count = sum(1 for line in f if line.strip())
+                    try:
+                        data = json.load(f)
+                        findings_count = len(data) if isinstance(data, list) else 1
+                    except json.JSONDecodeError:
+                        findings_count = 1
             
-            return ScanResult('nuclei', domain, True, str(output_file), findings_count=findings_count)
+            return ScanResult(
+                tool='porch-pirate',
+                target=self.target,
+                success=True,
+                output_file=str(output_file) if output_file.exists() else None,
+                findings_count=findings_count
+            )
             
+        except subprocess.TimeoutExpired:
+            return ScanResult(
+                tool='porch-pirate',
+                target=self.target,
+                success=False,
+                error="Porch-pirate scan timed out after 20 minutes"
+            )
         except Exception as e:
-            error_msg = f"Nuclei scan failed for {domain}: {str(e)}"
-            self.logger.error(error_msg)
-            return ScanResult('nuclei', domain, False, error=error_msg)
+            return ScanResult(
+                tool='porch-pirate',
+                target=self.target,
+                success=False,
+                error=str(e)
+            )
     
-    def run_nuclei_fast(self, domains: List[str]) -> List[ScanResult]:
-        """Run Nuclei with fast templates only"""
-        self.logger.info(f"[FAST] Running Nuclei vulnerability scans on {len(domains)} domains...")
-        if not self.tool_manager.is_available('nuclei'):
-            error_msg = "Nuclei not found. Install with: go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest"
-            self.logger.warning(error_msg)
-            return [ScanResult('nuclei', self.target, False, error=error_msg)]
+    def run_amass(self) -> ScanResult:
+        """Run Amass for comprehensive subdomain enumeration"""
+        if not self.tool_manager.tool_paths.get('amass'):
+            return ScanResult(
+                tool='amass',
+                target=self.target,
+                success=False,
+                error="Amass not found. Install with: brew install amass or apt-get install amass"
+            )
         
-        results = []
-        # Use targeted templates for speed + accuracy
-        fast_templates = [
-            '-t', 'http/vulnerabilities/', 
-            '-t', 'http/exposures/',
-            '-t', 'http/misconfiguration/',
-            '-severity', 'high,critical,medium',
-            '-rate-limit', '400',
-            '-timeout', '2',
-            '-concurrency', '60'
+        output_file = self.output_dir / f"amass-{self.target}.json"
+        cmd = [
+            self.tool_manager.tool_paths['amass'],
+            'enum',
+            '-d', self.target,
+            '-json', str(output_file),
+            '-oA', str(self.output_dir / 'amass'),
+            '-active',  # Active reconnaissance
+            '-brute',   # Enable subdomain bruteforcing
+            '-w', '/usr/share/wordlists/amass/subdomains-top1mil-5000.txt',  # Default wordlist
+            '-config', str(Path.home() / '.config/amass/config.ini'),  # Use config file if exists
+            '-timeout', '30',  # 30 minutes timeout
+            '-max-dns-queries', '1000'  # Rate limiting
         ]
         
-        with ThreadPoolExecutor(max_workers=5) as executor:  # Increased workers
-            futures = {}
-            for domain in domains[:5]:  # Limit domains for speed
-                future = executor.submit(self._run_nuclei_single_fast, domain, fast_templates)
-                futures[future] = domain
-            
-            for future in as_completed(futures):
-                domain = futures[future]
-                try:
-                    result = future.result(timeout=300)  # 5 min timeout
-                    results.append(result)
-                except Exception as e:
-                    self.logger.error(f"Nuclei fast scan failed for {domain}: {e}")
-                    results.append(ScanResult('nuclei', domain, False, error=str(e)))
-        
-        self.logger.info("Nuclei fast scans completed")
-        return results
-    
-    def _run_nuclei_single_fast(self, domain: str, templates: List[str]) -> ScanResult:
-        """Run Nuclei on a single domain with fast templates"""
-        output_file = self.output_dir / f'nuclei_{domain.replace(".", "_")}.txt'
-        
-        cmd = [
-            self.tool_manager.tool_paths['nuclei'],
-            '-u', f'http://{domain}',
-            '-o', str(output_file),
-            '-rate-limit', '100',  # Faster rate
-            '-timeout', '5',       # Shorter timeout
-            '-retries', '1'        # Fewer retries
-        ] + templates
-        
         try:
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
-            findings_count = self._count_nuclei_findings(output_file)
-            return ScanResult('nuclei', domain, True, str(output_file), findings_count=findings_count)
+            self.logger.info(f"Running Amass on {self.target}")
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                timeout=1800  # 30 minutes timeout
+            )
+            
+            if result.returncode != 0:
+                return ScanResult(
+                    tool='amass',
+                    target=self.target,
+                    success=False,
+                    error=result.stderr
+                )
+            
+            # Count unique subdomains found
+            subdomains = set()
+            if output_file.exists() and output_file.stat().st_size > 0:
+                with open(output_file, 'r') as f:
+                    for line in f:
+                        try:
+                            data = json.loads(line)
+                            if 'name' in data:
+                                subdomains.add(data['name'].lower())
+                        except json.JSONDecodeError:
+                            continue
+            
+            return ScanResult(
+                tool='amass',
+                target=self.target,
+                success=True,
+                output_file=str(output_file),
+                findings_count=len(subdomains)
+            )
+            
+        except subprocess.TimeoutExpired:
+            return ScanResult(
+                tool='amass',
+                target=self.target,
+                success=False,
+                error="Command timed out after 30 minutes"
+            )
         except Exception as e:
-            return ScanResult('nuclei', domain, False, error=str(e))
+            return ScanResult(
+                tool='amass',
+                target=self.target,
+                success=False,
+                error=str(e)
+            )
     
-    def run_nuclei_parallel(self, domains: List[str]) -> List[ScanResult]:
-        """Run nuclei vulnerability scans on multiple domains"""
-        self.logger.info(f"[5/5] Running Nuclei vulnerability scans on {len(domains)} domains...")
-        
-        if not self.tool_manager.is_available('nuclei'):
-            error_msg = "Nuclei not found. Install with: go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest"
-            self.logger.warning(error_msg)
-            return [ScanResult('nuclei', self.target, False, error=error_msg)]
-        
+    def run_endpoint_discovery(self, domains: List[str]) -> List[ScanResult]:
+        """Run endpoint discovery on a list of domains"""
+        if not domains:
+            return []
+            
         results = []
         
-        # Use ThreadPoolExecutor for parallel scanning
-        with ThreadPoolExecutor(max_workers=3) as executor:
-            future_to_domain = {executor.submit(self.run_nuclei_single, domain): domain for domain in domains}
-            
-            for future in as_completed(future_to_domain):
-                domain = future_to_domain[future]
-                try:
-                    result = future.result()
-                    results.append(result)
-                    self.logger.info(f"Completed Nuclei scan for {domain}")
-                except Exception as e:
-                    error_msg = f"Nuclei scan failed for {domain}: {str(e)}"
-                    self.logger.error(error_msg)
-                    results.append(ScanResult('nuclei', domain, False, error=error_msg))
+        # Create a temporary file with domains
+        domains_file = self.output_dir / 'domains.txt'
+        with open(domains_file, 'w') as f:
+            f.write('\n'.join(domains))
         
-        successful_scans = sum(1 for r in results if r.success)
-        self.logger.info(f"Nuclei scans completed on {successful_scans}/{len(domains)} domains")
+        # Run waybackurls
+        if self.tool_manager.tool_paths.get('waybackurls'):
+            wayback_output = self.output_dir / 'waybackurls.txt'
+            cmd = [
+                self.tool_manager.tool_paths['waybackurls'],
+                '-no-subs',
+                '-get-targets',
+                '-i', str(domains_file)
+            ]
+            
+            try:
+                self.logger.info("Running waybackurls for endpoint discovery")
+                with open(wayback_output, 'w') as outfile:
+                    result = subprocess.run(
+                        cmd,
+                        stdout=outfile,
+                        stderr=subprocess.PIPE,
+                        text=True,
+                        timeout=300  # 5 minutes
+                    )
+                
+                if result.returncode == 0 and wayback_output.exists():
+                    with open(wayback_output, 'r') as f:
+                        url_count = len(f.readlines())
+                    
+                    results.append(ScanResult(
+                        tool='waybackurls',
+                        target=','.join(domains[:3]) + (f" and {len(domains)-3} more" if len(domains) > 3 else ''),
+                        success=True,
+                        output_file=str(wayback_output),
+                        findings_count=url_count
+                    ))
+                
+            except Exception as e:
+                self.logger.error(f"Error running waybackurls: {str(e)}")
+        
+        # Run gau
+        if self.tool_manager.tool_paths.get('gau'):
+            gau_output = self.output_dir / 'gau.txt'
+            cmd = [
+                self.tool_manager.tool_paths['gau'],
+                '--subs',
+                '--from', '202201',  # Get URLs from 2022 onwards
+                '--threads', '10',
+                '--o', str(gau_output)
+            ]
+            
+            try:
+                self.logger.info("Running gau for endpoint discovery")
+                result = subprocess.run(
+                    cmd,
+                    input='\n'.join(domains),
+                    capture_output=True,
+                    text=True,
+                    timeout=300  # 5 minutes
+                )
+                
+                if result.returncode == 0 and gau_output.exists():
+                    with open(gau_output, 'r') as f:
+                        url_count = len(f.readlines())
+                    
+                    results.append(ScanResult(
+                        tool='gau',
+                        target=','.join(domains[:3]) + (f" and {len(domains)-3} more" if len(domains) > 3 else ''),
+                        success=True,
+                        output_file=str(gau_output),
+                        findings_count=url_count
+                    ))
+                
+            except Exception as e:
+                self.logger.error(f"Error running gau: {str(e)}")
+        
+        # Run httpx on discovered endpoints
+        if self.tool_manager.tool_paths.get('httpx') and (wayback_output.exists() or gau_output.exists()):
+            httpx_output = self.output_dir / 'httpx.json'
+            input_files = [str(f) for f in [wayback_output, gau_output] if f.exists()]
+            
+            cmd = [
+                self.tool_manager.tool_paths['httpx'],
+                '-l', ','.join(input_files),
+                '-json',
+                '-o', str(httpx_output),
+                '-status-code',
+                '-title',
+                '-tech-detect',
+                '-follow-redirects',
+                '-timeout', '10',
+                '-threads', '20',
+                '-retries', '2'
+            ]
+            
+            try:
+                self.logger.info("Running httpx for endpoint validation")
+                result = subprocess.run(
+                    cmd,
+                    capture_output=True,
+                    text=True,
+                    timeout=600  # 10 minutes
+                )
+                
+                if result.returncode == 0 and httpx_output.exists():
+                    with open(httpx_output, 'r') as f:
+                        url_count = len(f.readlines())
+                    
+                    results.append(ScanResult(
+                        tool='httpx',
+                        target=','.join(domains[:3]) + (f" and {len(domains)-3} more" if len(domains) > 3 else ''),
+                        success=True,
+                        output_file=str(httpx_output),
+                        findings_count=url_count
+                    ))
+                
+            except Exception as e:
+                self.logger.error(f"Error running httpx: {str(e)}")
         
         return results
+    
+    def run_scan(self):
+        """Run AI-powered reconnaissance scan"""
+        start_time = datetime.now()
+        
+        if self.is_secure_site:
+            self.logger.warning(f"Target {self.target} is a well-known secure site. Running in safe mode with limited scanning.")
+            self._run_secure_site_scan(start_time)
+        elif self.fast_mode:
+            self.logger.info(f"Starting fast scan of {self.target}")
+            self._run_fast_scan(start_time)
+        else:
+            self.logger.info(f"Starting comprehensive scan of {self.target}")
+            self._run_normal_scan(start_time)
+    
+    def _run_secure_site_scan(self, start_time: datetime):
+        """Run a lightweight scan for well-known secure sites"""
+        self.logger.info(f"Running safe scan for well-known secure site: {self.target}")
+        
+        # Only run basic subdomain discovery
+        try:
+            result = self.run_subfinder()
+            if result:
+                self.results.append(result)
+        except Exception as e:
+            self.logger.error(f"Error running subdomain discovery: {str(e)}")
+        
+        # Generate summary with secure site notice
+        summary = self.generate_summary()
+        summary['is_secure_site'] = True
+        summary['secure_site_notice'] = "Limited scan performed - target is a well-known secure site"
+        self.print_summary(summary)
+        
+    def _run_fast_scan(self, start_time: datetime):
+        """Run fast parallel reconnaissance"""
+        with ThreadPoolExecutor(max_workers=4) as executor:
+            # Submit all tools for parallel execution
+            future_to_tool = {
+                executor.submit(self.run_subfinder): 'subfinder',
+                executor.submit(self.run_amass): 'amass',
+                executor.submit(self.run_porch_pirate): 'porch_pirate'
+            }
+            
+            # Process completed scans
+            for future in as_completed(future_to_tool):
+                tool_name = future_to_tool[future]
+                try:
+                    result = future.result()
+                    if result:
+                        self.results.append(result)
+                except Exception as e:
+                    self.logger.error(f"Error running {tool_name}: {str(e)}")
+        
+        # Generate summary
+        self.generate_summary()
+    
+    def _run_normal_scan(self, start_time: datetime):
+        # XSS test payloads
+        xss_payloads = [
+            '"><script>alert(1)</script>',
+            '" onmouseover="alert(1)"',
+            '"><img src=x onerror=alert(1)>'
+        ]
+        
+        # Test for LFI/RFI
+        lfi_payloads = [
+            "/etc/passwd",
+            "../../../../etc/passwd",
+            "C:\\Windows\\System32\\drivers\\etc\\hosts"
+        ]
+        
+        # SQL Injection test
+        sql_payloads = [
+            "1' OR '1'='1",
+            "1' OR '1'='1' -- ",
+            "1' OR 1=1 -- "
+        ]
+        
+        # 2. Test for SQL Injection
+        try:
+            for payload in sql_payloads:
+                test_url = f"{self.target}?id={payload}" if '?' in self.target else f"{self.target}?id={payload}"
+                response = requests.get(test_url, timeout=10, verify=False)
+                
+                # Simple check for SQL error messages
+                sql_errors = [
+                    "SQL syntax", "MySQL server", "syntax error", "unexpected end",
+                    "quoted string", "mysql_fetch", "num_rows", "not a valid MySQL"
+                ]
+                
+                if any(error.lower() in response.text.lower() for error in sql_errors):
+                    vulnerabilities.append({
+                        'type': 'SQL Injection',
+                        'url': test_url,
+                        'severity': 'high',
+                        'payload': payload,
+                        'description': 'Possible SQL injection vulnerability detected'
+                    })
+        except Exception as e:
+            self.logger.error(f"Error testing SQLi: {str(e)}")
+        
+        # 3. Test for XSS
+        try:
+            for payload in xss_payloads:
+                test_url = f"{target_url}?search={requests.utils.quote(payload)}"
+                response = requests.get(test_url, timeout=10, verify=False)
+                
+                if payload in response.text:
+                    vulnerabilities.append({
+                        'type': 'Cross-Site Scripting (XSS)',
+                        'url': test_url,
+                        'severity': 'medium',
+                        'payload': payload,
+                        'description': 'Possible XSS vulnerability detected (reflected)'
+                    })
+        except Exception as e:
+            self.logger.error(f"Error testing XSS: {str(e)}")
+        
+        # 4. Test for LFI/RFI
+        try:
+            for payload in lfi_payloads:
+                test_url = f"{target_url}?page={requests.utils.quote(payload)}"
+                response = requests.get(test_url, timeout=10, verify=False)
+                
+                lfi_indicators = ["root:", "nobody:", "/bin/", "Microsoft Windows ["]
+                if any(indicator in response.text for indicator in lfi_indicators):
+                    vulnerabilities.append({
+                        'type': 'Local File Inclusion (LFI)',
+                        'url': test_url,
+                        'severity': 'high',
+                        'payload': payload,
+                        'description': 'Possible LFI vulnerability detected'
+                    })
+        except Exception as e:
+            self.logger.error(f"Error testing LFI: {str(e)}")
+        
+        return vulnerabilities
+
+    def _run_normal_scan(self, start_time: datetime) -> Dict:
+        """Run normal sequential scan with comprehensive vulnerability checks"""
+        self.logger.info("Running in NORMAL mode (sequential execution with vulnerability scanning)")
+        
+        # Run tools sequentially
+        self.run_subfinder()
+        self.run_amass()
+        
+        # Get all discovered subdomains
+        subdomains = self._get_subdomains_from_results()
+        
+        # Add main target if not already in subdomains
+        if self.target not in subdomains:
+            subdomains.append(self.target)
+        
+        # Run vulnerability scan on all discovered domains
+        vulnerabilities = []
+        for domain in subdomains:
+            # Add http:// if no scheme is present
+            target_url = f"http://{domain}" if not domain.startswith(('http://', 'https://')) else domain
+            
+            # Run vulnerability checks
+            try:
+                # Test for SQL Injection
+                sql_payloads = [
+                    "' OR '1'='1",
+                    '\" OR \"\"=\"',
+                    "' OR '1'='1' --",
+                    "' OR 1=1 --"
+                ]
+                
+                # Test for XSS
+                xss_payloads = [
+                    "<script>alert('XSS')</script>",
+                    '\"><script>alert(1)</script>',
+                    '\" onmouseover=\"alert(1)\"',
+                    '\"><img src=x onerror=alert(1)>'
+                ]
+                
+                # Test for LFI/RFI
+                lfi_payloads = [
+                    "/etc/passwd",
+                    "../../../../etc/passwd",
+                    "C:\\Windows\\System32\\drivers\\etc\\hosts"
+                ]
+                
+                # Test for SQL Injection
+                for payload in sql_payloads:
+                    test_url = f"{target_url}?id={payload}" if '?' in target_url else f"{target_url}?id={payload}"
+                    try:
+                        response = requests.get(test_url, timeout=10, verify=False)
+                        
+                        # Simple check for SQL error messages
+                        sql_errors = [
+                            "SQL syntax", "MySQL server", "syntax error", "unexpected end",
+                            "quoted string", "mysql_fetch", "num_rows", "not a valid MySQL"
+                        ]
+                        
+                        if any(error.lower() in response.text.lower() for error in sql_errors):
+                            vulnerabilities.append({
+                                'type': 'SQL Injection',
+                                'url': test_url,
+                                'severity': 'high',
+                                'payload': payload,
+                                'description': 'Possible SQL injection vulnerability detected',
+                                'domain': domain
+                            })
+                    except Exception as e:
+                        self.logger.error(f"Error testing SQLi on {test_url}: {str(e)}")
+                
+                # Test for XSS
+                for payload in xss_payloads:
+                    test_url = f"{target_url}?search={requests.utils.quote(payload)}"
+                    try:
+                        response = requests.get(test_url, timeout=10, verify=False)
+                        
+                        if payload in response.text:
+                            vulnerabilities.append({
+                                'type': 'Cross-Site Scripting (XSS)',
+                                'url': test_url,
+                                'severity': 'medium',
+                                'payload': payload,
+                                'description': 'Possible XSS vulnerability detected (reflected)',
+                                'domain': domain
+                            })
+                    except Exception as e:
+                        self.logger.error(f"Error testing XSS on {test_url}: {str(e)}")
+                
+                # Test for LFI/RFI
+                for payload in lfi_payloads:
+                    test_url = f"{target_url}?page={requests.utils.quote(payload)}"
+                    try:
+                        response = requests.get(test_url, timeout=10, verify=False)
+                        
+                        lfi_indicators = ["root:", "nobody:", "/bin/", "Microsoft Windows ["]
+                        if any(indicator in response.text for indicator in lfi_indicators):
+                            vulnerabilities.append({
+                                'type': 'Local File Inclusion (LFI)',
+                                'url': test_url,
+                                'severity': 'high',
+                                'payload': payload,
+                                'description': 'Possible LFI vulnerability detected',
+                                'domain': domain
+                            })
+                    except Exception as e:
+                        self.logger.error(f"Error testing LFI on {test_url}: {str(e)}")
+                
+            except Exception as e:
+                self.logger.error(f"Error scanning {domain}: {str(e)}")
+        
+        # Save vulnerabilities to results
+        if vulnerabilities:
+            self.results.append(ScanResult(
+                tool='vuln_scan',
+                target=self.target,
+                success=True,
+                output_file=str(self.output_dir / 'vulnerabilities.json'),
+                findings_count=len(vulnerabilities)
+            ))
+            
+            # Save vulnerabilities to file
+            with open(self.output_dir / 'vulnerabilities.json', 'w') as f:
+                json.dump(vulnerabilities, f, indent=2)
+        
+        # Run endpoint discovery on discovered subdomains
+        if subdomains:
+            self.run_endpoint_discovery(subdomains)
+        
+        # Generate and return summary
+        summary = self.generate_summary()
+        
+        # Add vulnerabilities to summary
+        if vulnerabilities:
+            summary['vulnerabilities'] = vulnerabilities
+            
+            # Count vulnerabilities by severity
+            severity_counts = {'high': 0, 'medium': 0, 'low': 0}
+            for vuln in vulnerabilities:
+                severity = vuln.get('severity', 'low').lower()
+                if severity in severity_counts:
+                    severity_counts[severity] += 1
+            
+            summary['vulnerability_summary'] = severity_counts
+        
+        return summary
+    
+    def _get_subdomains_from_results(self) -> List[str]:
+        """Get subdomains from previous scan results"""
+        subdomains = set()
+        
+        for result in self.results:
+            if result.tool in ['subfinder', 'amass']:
+                if result.output_file:
+                    with open(result.output_file, 'r') as f:
+                        for line in f:
+                            subdomain = line.strip()
+                            if subdomain:
+                                subdomains.add(subdomain)
+        
+        return list(subdomains)
     
     def generate_summary(self) -> Dict:
         """Generate comprehensive scan summary"""
@@ -662,16 +1147,7 @@ class SecurityScanner:
             'output_directory': str(self.output_dir),
             'total_runtime': str(runtime).split('.')[0],  # Remove microseconds
             'scan_results': {},
-            'vulnerability_summary': {
-                'total_findings': 0,
-                'high_severity': 0,
-                'critical_severity': 0,
-                'medium_severity': 0,
-                'low_info_severity': 0
-            },
             'files_generated': [],
-            'total_vulnerabilities': 0,
-            'vulnerabilities_by_severity': {},
             'results': []
         }
         
@@ -690,27 +1166,13 @@ class SecurityScanner:
             else:
                 summary['scan_results'][result.tool]['failed'] += 1
         
-        # Count nuclei findings by severity
-        nuclei_files = list(self.output_dir.glob('nuclei_*.txt'))
-        for nuclei_file in nuclei_files:
-            if nuclei_file.exists():
-                with open(nuclei_file, 'r') as f:
-                    content = f.read()
-                    total_findings = len([line for line in content.split('\n') if line.strip()])
-                    summary['vulnerability_summary']['total_findings'] += total_findings
-                    summary['vulnerability_summary']['high_severity'] += content.lower().count('[high]')
-                    summary['vulnerability_summary']['critical_severity'] += content.lower().count('[critical]')
-                    summary['vulnerability_summary']['medium_severity'] += content.lower().count('[medium]')
-                    summary['vulnerability_summary']['low_info_severity'] += content.lower().count('[low]') + content.lower().count('[info]')
-        
-        # Set total vulnerabilities and by severity
-        summary['total_vulnerabilities'] = summary['vulnerability_summary']['total_findings']
-        summary['vulnerabilities_by_severity'] = {
-            'critical': summary['vulnerability_summary']['critical_severity'],
-            'high': summary['vulnerability_summary']['high_severity'],
-            'medium': summary['vulnerability_summary']['medium_severity'],
-            'low': summary['vulnerability_summary']['low_info_severity']
-        }
+        # List generated files
+        for file_path in self.output_dir.iterdir():
+            if file_path.is_file():
+                summary['files_generated'].append({
+                    'name': file_path.name,
+                    'size': file_path.stat().st_size
+                })
         
         # Add results for compatibility
         summary['results'] = [
@@ -722,131 +1184,73 @@ class SecurityScanner:
             } for result in self.results
         ]
         
-        # List generated files
-        for file_path in self.output_dir.iterdir():
-            if file_path.is_file():
-                summary['files_generated'].append({
-                    'name': file_path.name,
-                    'size': file_path.stat().st_size
-                })
-        
         # Save summary to JSON file
         summary_file = self.output_dir / 'scan_summary.json'
         with open(summary_file, 'w') as f:
             json.dump(summary, f, indent=2)
         
         return summary
-    
-    def _run_fast_scan(self, start_time) -> Dict:
-        """Run fast parallel scan"""
-        from concurrent.futures import ThreadPoolExecutor, as_completed
-        
-        # Run reconnaissance tools in parallel
-        with ThreadPoolExecutor(max_workers=5) as executor:
-            futures = {}
-            
-            # Submit fast recon tasks
-            if self.tool_manager.is_available('porch-pirate'):
-                futures[executor.submit(self.run_porch_pirate)] = 'porch-pirate'
-            
-            if self.tool_manager.is_available('subfinder'):
-                futures[executor.submit(self.run_subfinder)] = 'subfinder'
-            
-            # Skip slow tools in fast mode or run with shorter timeouts
-            
-            # Collect results
-            subdomains = [self.target]
-            for future in as_completed(futures):
-                tool_name = futures[future]
-                try:
-                    if tool_name == 'subfinder':
-                        result, found_subdomains = future.result()
-                        subdomains.extend(found_subdomains)
-                        self.results.append(result)
-                    else:
-                        result = future.result()
-                        self.results.append(result)
-                except Exception as e:
-                    self.logger.error(f"Fast scan error for {tool_name}: {e}")
-        
-        # Remove duplicates and limit subdomains for speed
-        subdomains = list(set(subdomains))[:10]  # Limit to 10 for speed
-        
-        # Run Nuclei with limited templates for speed
-        if self.tool_manager.is_available('nuclei'):
-            nuclei_results = self.run_nuclei_fast(subdomains)
-            self.results.extend(nuclei_results)
-        
-        return self.generate_summary()
-    
-    def _run_normal_scan(self, start_time) -> Dict:
-        """Run normal sequential scan"""
-        # Run scans sequentially
-        porch_result = self.run_porch_pirate()
-        self.results.append(porch_result)
-        
-        subfinder_result, subdomains = self.run_subfinder()
-        self.results.append(subfinder_result)
-        
-        osmedeus_result = self.run_osmedeus()
-        self.results.append(osmedeus_result)
-        
-        rengine_result, rengine_subdomains = self.run_rengine()
-        self.results.append(rengine_result)
-        
-        # Combine subdomains from all sources
-        all_subdomains = list(set(subdomains + rengine_subdomains))
-        
-        nuclei_results = self.run_nuclei_parallel(all_subdomains)
-        self.results.extend(nuclei_results)
-        
-        return self.generate_summary()
-    
     def print_summary(self, summary: Dict):
         """Print formatted summary to console"""
-        print("\n" + "="*50)
-        print("SCAN SUMMARY")
-        print("="*50)
-        print(f"Target: {summary['target']}")
-        print(f"Scan completed at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-        print(f"Results saved in: {summary['output_directory']}")
-        print()
-        
-        # Tool results
-        for tool, results in summary['scan_results'].items():
-            print(f"{tool.title()} Results:")
-            print(f"  Successful scans: {results['success']}")
-            print(f"  Failed scans: {results['failed']}")
-            print(f"  Total findings: {results['total_findings']}")
-            print()
-        
-        # Vulnerability summary
-        vuln_summary = summary['vulnerability_summary']
-        print("Nuclei Vulnerability Summary:")
-        print("-" * 40)
-        print(f"Total findings: {vuln_summary['total_findings']}")
-        print()
-        print("Critical severity issues:")
-        if vuln_summary['critical_severity'] > 0:
-            print(f"  {vuln_summary['critical_severity']} critical issues found")
-        else:
-            print("  No critical severity issues found")
-        
-        print()
-        print("High severity issues:")
-        if vuln_summary['high_severity'] > 0:
-            print(f"  {vuln_summary['high_severity']} high severity issues found")
-        else:
-            print("  No high severity issues found")
-        
-        print()
-        print(f"Medium severity issues: {vuln_summary['medium_severity']}")
-        print(f"Low/Info severity issues: {vuln_summary['low_info_severity']}")
-        
-        print()
-        print("Files generated:")
-        for file_info in summary['files_generated']:
-            print(f"  {file_info['name']} ({file_info['size']} bytes)")
+        try:
+            print("\n" + "="*70)
+            print(f"{' RECONNAISSANCE SUMMARY ':=^70}")
+            print("="*70)
+            print(f"Target: {summary['target']}")
+            print(f"Scan started at: {summary['start_time']}")
+            print(f"Total runtime: {summary['total_runtime']}")
+            print("\n[+] Tools executed:")
+            
+            # Track total findings
+            total_subdomains = 0
+            total_endpoints = 0
+            
+            for tool, stats in summary['scan_results'].items():
+                status = "✓" if stats['success'] > 0 else "✗"
+                if tool in ['subfinder', 'amass']:
+                    total_subdomains += stats['total_findings']
+                    print(f"  {status} {tool.upper()}: Found {stats['total_findings']} subdomains")
+                elif tool in ['waybackurls', 'gau']:
+                    total_endpoints += stats['total_findings']
+                    print(f"  {status} {tool.upper()}: Found {stats['total_findings']} endpoints")
+                else:
+                    print(f"  {status} {tool.upper()}: {stats['success']} successful, {stats['failed']} failed")
+            
+            print("\n[+] Summary of findings:")
+            print(f"  - Total unique subdomains discovered: {total_subdomains}")
+            print(f"  - Total endpoints discovered: {total_endpoints}")
+            
+            if 'files_generated' in summary and summary['files_generated']:
+                print("\n[+] Files generated:")
+                for file in summary['files_generated']:
+                    size_kb = file['size'] / 1024
+                    print(f"  - {file['name']} ({size_kb:.1f} KB)")
+            
+            # Print vulnerability summary if available
+            if 'vulnerabilities' in summary and summary['vulnerabilities']:
+                print("\n[+] Vulnerability Summary:")
+                for vuln in summary['vulnerabilities']:
+                    print(f"  - {vuln['severity'].upper()}: {vuln['name']} ({vuln['description']})")
+            else:
+                print("\n[+] No vulnerabilities found")
+                
+            print("\n[+] Next steps:")
+            print("  1. Review the discovered subdomains in the output files")
+            print("  2. Check for sensitive information in the endpoint discovery results")
+            print("  3. Manually verify any interesting findings")
+            
+            # Print files generated
+            if 'files_generated' in summary and summary['files_generated']:
+                print("\n[+] Files generated:")
+                for file_info in summary['files_generated']:
+                    size_mb = file_info['size'] / (1024 * 1024)
+                    print(f"  - {file_info['name']} ({size_mb:.2f} MB)")
+            
+            print("\n" + "="*70)
+                
+        except KeyError as e:
+            self.logger.error(f"Error generating summary: {e}")
+            print("\n[!] Error generating complete summary. Some information may be missing.")
         
         print()
         print("="*50)
@@ -901,48 +1305,48 @@ class SecurityScanner:
         if self.fast_mode:
             # Fast mode: run essential tools in parallel
             self.logger.info("Running in FAST MODE - parallel execution")
-            summary = self._run_fast_scan(start_time)
-        else:
-            # Normal mode: sequential execution
-            summary = self._run_normal_scan(start_time)
-        
-        self.logger.info("=" * 50)
-        self.logger.info("Scan completed successfully!")
-        self.logger.info(f"Total runtime: {summary['total_runtime']}")
-        self.logger.info(f"Summary saved to: {self.output_dir / 'scan_summary.json'}")
-        self.logger.info("=" * 50)
-        
-        return summary
-
-
-def main():
     """Main entry point"""
-    parser = argparse.ArgumentParser(description='AI-Powered Security Scanner')
-    parser.add_argument('target', help='Target URL or domain to scan')
-    parser.add_argument('-o', '--output', help='Output directory for results')
-    parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose logging')
-    parser.add_argument('-f', '--fast', action='store_true', help='Enable fast scan mode')
-    parser.add_argument('--demo', action='store_true', help='Enable demo mode with guaranteed vulnerability detection')
+    parser = argparse.ArgumentParser(description='AI-Powered Reconnaissance Tool')
+    parser.add_argument('target', help='Target domain to perform reconnaissance on')
+    parser.add_argument('-o', '--output', help='Output directory for results (default: scan_results/<target>-<timestamp>)')
+    parser.add_argument('-f', '--fast', action='store_true', help='Enable fast mode (parallel execution)')
+    parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose output')
+    parser.add_argument('--no-http', action='store_true', help='Skip HTTP endpoint discovery')
     
     args = parser.parse_args()
     
+    # Setup logging
+    log_level = logging.DEBUG if args.verbose else logging.INFO
+    logging.basicConfig(
+        level=log_level,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler('recon.log'),
+            logging.StreamHandler()
+        ]
+    )
+    
     try:
-        scanner = SecurityScanner(args.target, Path(args.output) if args.output else None, args.fast, args.verbose)
+        # Check if target is a valid domain
+        if not re.match(r'^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$', args.target.lower()):
+            logging.error("Invalid domain format. Please provide a valid domain (e.g., example.com)")
+            sys.exit(1)
+            
+        scanner = SecurityScanner(
+            target=args.target,
+            output_dir=args.output,
+            fast_mode=args.fast,
+            verbose=args.verbose
+        )
         
-        # Demo mode for presentations
-        if args.demo:
-            scanner.demo_mode = True
-            print("DEMO MODE ENABLED - Enhanced vulnerability detection for presentations")
+        # Run the reconnaissance
+        print(f"\n[+] Starting reconnaissance on {args.target}")
+        print("[*] This may take some time depending on the target's size...\n")
         
         summary = scanner.run_scan()
         
-        print("\n" + "="*50)
-        print("SCAN SUMMARY")
-        print("="*50)
-        print(f"Target: {scanner.target}")
-        print(f"Total Runtime: {summary.get('runtime', 'Unknown')}")
-        print(f"Tools Used: {summary.get('tools_used', 'Unknown')}")
-        print(f"Total Vulnerabilities Found: {summary.get('total_vulnerabilities', 0)}")
+        # Print summary
+        scanner.print_summary(summary)
         print()
         print("Vulnerabilities by Severity:")
         vuln_by_severity = summary.get('vulnerabilities_by_severity', {})

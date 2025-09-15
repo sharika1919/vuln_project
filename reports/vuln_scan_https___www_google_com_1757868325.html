@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vulnerability Scan Report - https://www.google.com</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+        .header { background-color: #f5f5f5; padding: 20px; border-radius: 5px; }
+        .vulnerability { margin-bottom: 20px; border-left: 4px solid #e74c3c; padding-left: 15px; }
+        .high { border-left-color: #e74c3c; }
+        .medium { border-left-color: #f39c12; }
+        .low { border-left-color: #3498db; }
+        .severity-high { color: #e74c3c; font-weight: bold; }
+        .severity-medium { color: #f39c12; font-weight: bold; }
+        .severity-low { color: #3498db; font-weight: bold; }
+        pre { background-color: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto; }
+        .summary { margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Vulnerability Scan Report</h1>
+        <p><strong>Target:</strong> https://www.google.com</p>
+        <p><strong>Scan Time:</strong> 2025-09-14 22:12:08</p>
+        <div class="summary">
+            <h3>Summary</h3>
+            <p>High Severity: <span class="severity-high">27</span> | 
+               Medium Severity: <span class="severity-medium">0</span> | 
+               Low Severity: <span class="severity-low">0</span></p>
+        </div>
+    </div>
+
+    <h2>Vulnerabilities Found</h2>
+
+    <div class="vulnerability high">
+        <h3>1. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=%3Cscript%3Ealert%28%27XSS%27%29%3C/script%3E" target="_blank">https://www.google.com?search=%3Cscript%3Ealert%28%27XSS%27%29%3C/script%3E</a></p>
+        <p><strong>Description:</strong> Possible Basic XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><script>alert('XSS')</script></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="7wOLKFWafbQ5UPXKFiMe0w">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="7wOLKFWafbQ5</pre>
+        <p><em>Detected at: 2025-09-14 22:15:07</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>2. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=%3Cscript%3Ealert%281%29%3C/script%3E" target="_blank">https://www.google.com?search=%3Cscript%3Ealert%281%29%3C/script%3E</a></p>
+        <p><strong>Description:</strong> Possible Basic XSS without quotes vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><script>alert(1)</script></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="sczQdic8Zx6h2VSvyINiBw">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="sczQdic8Zx6h</pre>
+        <p><em>Detected at: 2025-09-14 22:15:08</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>3. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=%22%3E%3Cscript%3Ealert%281%29%3C/script%3E" target="_blank">https://www.google.com?search=%22%3E%3Cscript%3Ealert%281%29%3C/script%3E</a></p>
+        <p><strong>Description:</strong> Possible Tag break XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code>"><script>alert(1)</script></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="v1PuB-twdAC-EHcpBLWERQ">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="v1PuB-twdAC-</pre>
+        <p><em>Detected at: 2025-09-14 22:15:08</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>4. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=%3C/script%3E%3Cscript%3Ealert%281%29%3C/script%3E" target="_blank">https://www.google.com?search=%3C/script%3E%3Cscript%3Ealert%281%29%3C/script%3E</a></p>
+        <p><strong>Description:</strong> Possible Script tag break XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code></script><script>alert(1)</script></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="ratqN1vmFxc8CaunGduB4Q">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="ratqN1vmFxc8</pre>
+        <p><em>Detected at: 2025-09-14 22:15:09</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>5. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E" target="_blank">https://www.google.com?search=%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E</a></p>
+        <p><strong>Description:</strong> Possible Image error handler XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><img src=x onerror=alert(1)></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="T0HiVdi80wautYTf5v3PQw">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="T0HiVdi80wau</pre>
+        <p><em>Detected at: 2025-09-14 22:15:10</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>6. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=%22%20onmouseover%3D%22alert%281%29%22" target="_blank">https://www.google.com?search=%22%20onmouseover%3D%22alert%281%29%22</a></p>
+        <p><strong>Description:</strong> Possible Event handler XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code>" onmouseover="alert(1)"</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="GSYB3qv3M0e1YO-a40I7wA">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="GSYB3qv3M0e1</pre>
+        <p><em>Detected at: 2025-09-14 22:15:10</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>7. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=%22%20onload%3D%22alert%281%29%22" target="_blank">https://www.google.com?search=%22%20onload%3D%22alert%281%29%22</a></p>
+        <p><strong>Description:</strong> Possible Onload event XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code>" onload="alert(1)"</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="arJ4qhcdX1BIOOUmd4ZTBg">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="arJ4qhcdX1BI</pre>
+        <p><em>Detected at: 2025-09-14 22:15:11</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>8. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=%22%20onerror%3D%22alert%281%29%22" target="_blank">https://www.google.com?search=%22%20onerror%3D%22alert%281%29%22</a></p>
+        <p><strong>Description:</strong> Possible Onerror event XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code>" onerror="alert(1)"</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="mI1hGi1R8ESVZi1wlYeaiQ">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="mI1hGi1R8ESV</pre>
+        <p><em>Detected at: 2025-09-14 22:15:12</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>9. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=%3Csvg/onload%3Dalert%281%29%3E" target="_blank">https://www.google.com?search=%3Csvg/onload%3Dalert%281%29%3E</a></p>
+        <p><strong>Description:</strong> Possible SVG onload XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><svg/onload=alert(1)></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="QQ_yQh2LrPrR-7nijU89Tg">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="QQ_yQh2LrPrR</pre>
+        <p><em>Detected at: 2025-09-14 22:15:12</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>10. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=%3Csvg%20onload%3Dalert%281%29%3E" target="_blank">https://www.google.com?search=%3Csvg%20onload%3Dalert%281%29%3E</a></p>
+        <p><strong>Description:</strong> Possible SVG onload without slash vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><svg onload=alert(1)></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="il6IVoIzm0D-iHNUxLjVWw">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="il6IVoIzm0D-</pre>
+        <p><em>Detected at: 2025-09-14 22:15:13</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>11. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=javascript%3Aalert%281%29" target="_blank">https://www.google.com?search=javascript%3Aalert%281%29</a></p>
+        <p><strong>Description:</strong> Possible JavaScript URI XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code>javascript:alert(1)</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="Ofq43NeN7eaIjHili-bcbA">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="Ofq43NeN7eaI</pre>
+        <p><em>Detected at: 2025-09-14 22:15:14</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>12. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=javascript%3Aalert%28document.cookie%29" target="_blank">https://www.google.com?search=javascript%3Aalert%28document.cookie%29</a></p>
+        <p><strong>Description:</strong> Possible JavaScript cookie theft vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code>javascript:alert(document.cookie)</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="UXKZZCWjW0zZKzHwvc-81A">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="UXKZZCWjW0zZ</pre>
+        <p><em>Detected at: 2025-09-14 22:15:14</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>13. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=%3Cbody%20onload%3Dalert%281%29%3E" target="_blank">https://www.google.com?search=%3Cbody%20onload%3Dalert%281%29%3E</a></p>
+        <p><strong>Description:</strong> Possible Body onload XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><body onload=alert(1)></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="jywcU8FQnwscNpncW6896A">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="jywcU8FQnwsc</pre>
+        <p><em>Detected at: 2025-09-14 22:15:15</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>14. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=%3Ciframe%20src%3D%22javascript%3Aalert%281%29%22%3E" target="_blank">https://www.google.com?search=%3Ciframe%20src%3D%22javascript%3Aalert%281%29%22%3E</a></p>
+        <p><strong>Description:</strong> Possible Iframe JavaScript XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><iframe src="javascript:alert(1)"></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="IEDw7hY_JyfnrE7blEJuRQ">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="IEDw7hY_Jyfn</pre>
+        <p><em>Detected at: 2025-09-14 22:15:15</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>15. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%20/%3E" target="_blank">https://www.google.com?search=%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%20/%3E</a></p>
+        <p><strong>Description:</strong> Possible Image error XSS with self-closing vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><img src=x onerror=alert(1) /></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="PkzFiKzWNM1_6v26cp8DbA">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="PkzFiKzWNM1_</pre>
+        <p><em>Detected at: 2025-09-14 22:15:16</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>16. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=%3Cimg%20src%3Dx%20oneonerrorrror%3Dalert%281%29%3E" target="_blank">https://www.google.com?search=%3Cimg%20src%3Dx%20oneonerrorrror%3Dalert%281%29%3E</a></p>
+        <p><strong>Description:</strong> Possible Obfuscated error handler XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><img src=x oneonerrorrror=alert(1)></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="YYFp_kRx_CC6CqvNS2a-Lw">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="YYFp_kRx_CC6</pre>
+        <p><em>Detected at: 2025-09-14 22:15:17</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>17. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?search=%3Cimg%20src%3Dx%3Aalert%281%29//" target="_blank">https://www.google.com?search=%3Cimg%20src%3Dx%3Aalert%281%29//</a></p>
+        <p><strong>Description:</strong> Possible Alternative XSS vector vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><img src=x:alert(1)//</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta charset="UTF-8"><meta content="origin" name="referrer"><link href="//www.gstatic.com/images/branding/searchlogo/ico/favicon.ico" rel="icon"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><style>@font-face{font-family:'Google Sans';font-style:normal;font-weight:400 700;font-display:optional;src:url(//fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style><script nonce="WGmpHj7Qkczrvk8gqPSpcQ">(function(){var w=["Google Sans",[400,500,700]];(function(){for(var a=0;a<w.length;a+=2)for(var d=w[a],e=w[a+1],b=0,c=void 0;c=e[b];++b)document.fonts.load(c+" 10pt "+d).catch(function(){})})();})();</script><title>Google</title><script nonce="WGmpHj7Qkczr</pre>
+        <p><em>Detected at: 2025-09-14 22:15:17</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>18. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?file=/etc/passwd" target="_blank">https://www.google.com?file=/etc/passwd</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - UNIX password file in parameter 'file'</p>
+        <p><strong>Payload:</strong> <code>/etc/passwd</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="1euWU5GrHX-zfBlEdDxnxQ">(function(){var _g={kEI:'HvHGaMTkCp6QseMP--inmQY',kEXPI:'0,202854,2,52,14,4037123,14111,64702,6398,354503,100066,119745,27509,42724,11106,5231033,101,98,68,36811918,25306698,39290,20961,14110,8944,13974,42249,6758,23878,9140,4599,328,6225,64165,15048,49,8157,3292,4134,30379,28334,42889,11322,353,18880,3122,3,2745,3858,3856,5774,6374,18586,7,2644,3050,2,1667,11805,6251,35,3420,2115,749,10620,12107,5683,3605,16008,1763,2724,7,13633,1635,1279,1903,2,4,1592,11806,567,6025,1,1548,8082,1033,3829,2608,2475,2,5295,7,1963,2646,103,4,1,320,781,61,2,4259,667,4113,8385,519,1523,2,2,3504,5978,3614,1937,2488,1281,407,183,2,1,1380,31,104,1104,2251,2,1055,2843,2110,2,1347,4,1,1,260,422,127,1838,3858,3,4,2,553,4,4,1,1,2368,251,113,3555,146,1059,154,4,4,2082,2097,43,2,874,27,2204,569,3347,578,459,136,19,3008,27,768,2219,1127,1322,3979,506,632,237,2516,260,97,2439,326,73,1348,156,1781,515,21,87,7,2,645,7,4,495,6,428,222,113,21,3,354,2,991,70,243,1294,617,249,2743,250,7,1138,4,539,21,74,170,1616,294,2348,502,140,113,211,210,225,56,548,223,2,1,3,2,3,7,1058,540,276,1363,1367,492,311,9,1,296,28,3,2,2,2,771,266,1199,1,2,12,16,192,223,1,382,6,1055,423,1909,199,9,27,8,1302,525,1105,123,410,4,275,321,84,36,2,611,145,792,5,72,4,96,253,160,127,2,136,49,339,8,2,134,265,10,418,366,675,570,574,272,2,112,65,308,28,510,99,6,40,13,1494,2,1550,681,124,167,899,304,227,2,165,179,273,3,3,229,129,28,469,2,2,805,310,46,71,11,581,629,567,183,4,298,1,569,316,184,9,1,128,868,573,5,159,92,112,155,85,454,593,307,139,339,362,200,8,14,160,16,1029,532,141,977,688,315,342,107,1226,299,101,44,2,216,137,490,1992,1,2,614,1,2,20726494,416080,5,2253,739,4,2433,268,259,3,3237,1577,3071,606,2,709,853,3,2442,3,5871,27</pre>
+        <p><em>Detected at: 2025-09-14 22:15:18</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>19. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?file=../../../../etc/passwd" target="_blank">https://www.google.com?file=../../../../etc/passwd</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Path traversal to password file in parameter 'file'</p>
+        <p><strong>Payload:</strong> <code>../../../../etc/passwd</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="3odq3sH8q-4pc0eMdNXKpg">(function(){var _g={kEI:'HvHGaOHGOuugseMPjPme4Aw',kEXPI:'0,202854,2,82,4037107,94918,344796,228119,19200,23156,19569,11106,5231033,101,97,5992027,30819960,25345988,20961,14110,11947,53224,6754,23878,9140,4599,328,6225,1117,63048,15049,8205,888,1,2,2401,4134,30379,28334,22956,25339,22,4636,1258,353,18470,410,3122,3,2745,1898,1960,3856,5773,27612,3050,2,1667,11805,2801,6905,2864,10620,12107,5683,3604,17772,2724,7,15268,1279,11143,4730,6022,1,4378,2,5255,1032,655,5435,347,2475,2,1498,1412,4355,2646,103,4,1,321,5102,667,2259,1854,988,9,7907,359,1,495,4,4172,10068,3733,217,1280,590,2,1,1379,32,104,3044,311,2,195,860,2839,2114,2,1347,4,1,1,681,128,5043,668,3,4,2,2916,250,1931,1738,146,848,211,154,4,4,2351,1828,43,2,874,24,2207,3911,583,459,136,19,3008,27,768,3347,1321,1121,1536,820,4,4,920,396,312,126,115,1904,612,357,2447,318,73,27,1034,286,1938,512,24,87,7,2,645,7,4,495,6,764,21,1,1348,70,243,1294,617,3242,7,839,299,4,538,22,72,1788,1178,799,665,501,141,113,219,202,41,239,549,223,2,1,3,2,3,7,1058,541,371,1266,1368,490,313,306,28,3,2,2,2,772,265,1167,1,2,12,16,447,1,382,6,107,1055,315,151,227,134,1397,200,9,27,8,1303,533,497,2,12,23,685,1010,120,2,470,141,145,869,4,349,273,10,2,528,8,2,377,10,74,12,354,366,1819,188,198,402,667,3728,124,136,30,105,1097,271,811,157,1278,38,318,71,11,581,264,365,186,3,3,390,168,4,868,500,9,1,129,867,573,5,159,94,273,77,433,21,1378,59,309,268,47,78,125,205,688,682,811,1618,1225,301,165,2,196,133,494,1992,1,2,21143191,5,2253,739,4,2701,259,3,3237,4647,607,2,706,852,3,2446,3,8640,158,1033,131,2,2502,1645,314,622,6038461,11629',kBL:'4lXh',kOPI:89978449};(function(){var a;((a=window.google)==null?0:a.stvsc)?google.kEI=_g.kEI:window.google=_</pre>
+        <p><em>Detected at: 2025-09-14 22:15:19</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>20. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?file=....//....//....//etc/passwd" target="_blank">https://www.google.com?file=....//....//....//etc/passwd</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Double encoding bypass in parameter 'file'</p>
+        <p><strong>Payload:</strong> <code>....//....//....//etc/passwd</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="kM5YORk5_H2anFnc08Z0og">(function(){var _g={kEI:'H_HGaOCmKfugnesPoMW4uQ0',kEXPI:'0,202854,2,52,14,16,3946974,90133,78813,16105,344796,283630,6414,11106,5231033,101,97,36811987,25366949,14110,65175,6750,23879,7041,2097,4600,328,6225,64165,15049,8205,3292,4134,30379,28334,10903,31984,11324,353,10731,8149,5870,7714,5774,16794,10817,3050,2,422,1245,11805,6251,35,3420,2864,2884,7735,12108,5683,3604,16009,1763,2724,7,16547,14889,418,566,4803,3,1220,1,9631,1032,6084,353,7794,7,1941,2646,103,4,1,320,841,2,4257,670,94,4019,8385,519,5031,744,8847,477,3950,1279,591,2,1,1380,31,104,578,2777,2,1055,2839,2114,2,1347,4,1,1,681,128,1686,3357,216,452,3,4,2,538,4,4,1,1,2368,250,114,3555,1205,154,4,4,2349,1873,2,874,30,1634,13,554,547,22,3347,578,459,136,19,3007,23,773,27,3319,317,1005,1079,92,2,2804,1136,241,344,4,3,2165,359,501,1944,318,73,27,1320,1301,637,512,24,741,7,4,495,6,650,114,20,3,162,1185,70,243,1294,617,3242,7,807,331,4,541,19,74,170,4258,501,141,113,219,202,33,191,56,549,125,98,2,1,3,2,3,7,1058,540,276,116,1247,1367,492,311,306,28,3,2,2,2,770,267,362,837,1,2,12,16,415,1,16,366,6,236,1178,13,51,514,303,623,469,199,9,27,8,643,3,656,534,304,3,912,1010,120,2,602,154,792,5,72,4,349,283,2,189,339,8,2,134,298,395,365,502,763,555,386,65,336,510,158,3727,123,168,899,304,230,2,38,480,3,3,325,153,439,28,2,2,283,838,129,11,272,298,264,1114,4,190,108,1,569,174,326,9,1,35,2,92,866,56,54,128,63,273,5,251,30,18,147,28,583,911,2,465,63,274,31,392,19,5,857,726,12,82,909,313,271,173,656,107,21,3,1502,363,128,2491,1,2,21143191,5,2253,739,4,2700,260,3,3237,5254,2,1558,3,1000,1165,281,3,8640,7,152,1032,358,575,1702,499,1678,287,211',kBL:'4lXh',kOPI:89978449};(function(){var a;((a=window.google)==null?0:a.stvsc)</pre>
+        <p><em>Detected at: 2025-09-14 22:15:20</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>21. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?file=..%5C..%5C..%5Cwindows%5Cwin.ini" target="_blank">https://www.google.com?file=..%5C..%5C..%5Cwindows%5Cwin.ini</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Windows system file in parameter 'file'</p>
+        <p><strong>Payload:</strong> <code>..\..\..\windows\win.ini</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="QLMiDlHcc4m2XPC-1NAHKA">(function(){var _g={kEI:'IPHGaLCmGNvuseMP2YiJ6AU',kEXPI:'0,202854,2,82,4037107,78813,6398,9707,344796,270476,19568,11106,5231032,102,97,36811987,25366949,14110,22917,34214,8044,6750,23879,9138,4600,328,6225,50575,13589,15049,8206,3292,4134,30379,28334,54212,352,10700,8180,5870,1888,5826,5774,15030,3828,6091,7,2655,3050,2,1667,11805,6251,35,3420,2115,749,10620,12107,5683,3605,7329,10442,2724,7,627,6514,8127,1279,15323,551,6021,1,9635,1032,2293,4144,9742,2646,103,4,1,321,841,2,3251,1005,670,4113,8904,855,4,4172,744,737,2,2,8107,476,3949,1280,591,2,1,1379,32,104,3044,311,2,1055,35,2808,2110,2,1347,4,1,1,681,128,4929,114,215,453,3,4,2,2916,250,1931,1738,1205,2244,2102,38,2,874,27,2204,3916,580,457,136,19,3008,24,761,10,3347,710,8,4,600,941,4,3031,323,501,312,241,376,4,3,2133,359,2437,326,73,1348,156,1781,515,21,87,7,2,633,7,4,507,6,46,383,335,20,2,1348,70,243,487,806,618,3242,7,1138,4,331,208,21,74,1958,1805,665,501,141,113,211,210,41,240,548,125,98,2,1,3,2,3,7,1058,540,277,130,1231,521,847,490,313,305,29,3,2,2,2,1037,866,2,299,1,2,12,16,224,223,1,382,6,787,375,315,1910,199,9,27,8,1302,171,2,3,2,2,2,343,1105,123,1010,120,2,399,212,145,830,39,4,349,287,2,185,339,8,2,827,365,505,741,574,188,199,400,217,170,283,1942,1783,122,169,96,1106,395,167,519,158,762,943,11,581,302,633,3,3,438,4,862,506,9,1,129,112,2,9,4,740,55,56,126,235,101,5,251,114,78,84,76,454,1038,339,363,177,93,128,295,35,1186,1,45,54,85,917,543,50,423,390,107,20,3,1173,314,376,139,292,2168,1,2,1219,7,21141987,5,2253,739,4,2700,260,3,3237,5254,2,1558,3,2166,280,3,8635,163,924,109,1819,817,1424,3618423,2421194,11629,2459554,152220',kBL:'4lXh',kOPI:89978449};(function(){var a;((a=window.google)==null?0:a.st</pre>
+        <p><em>Detected at: 2025-09-14 22:15:20</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>22. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?file=..%255c..%255c..%255cwindows%5Cwin.ini" target="_blank">https://www.google.com?file=..%255c..%255c..%255cwindows%5Cwin.ini</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - URL-encoded Windows path traversal in parameter 'file'</p>
+        <p><strong>Payload:</strong> <code>..%5c..%5c..%5cwindows\win.ini</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="jpcmuH3z_1bH6CYI51q-oQ">(function(){var _g={kEI:'IfHGaMLwB-eNnesPkeW5mAY',kEXPI:'0,202854,2,83,4037106,78813,6397,9708,344796,238458,51586,11106,5231033,101,97,58,32768220,29323580,5,26821,60252,14110,4563,4381,3003,53225,6753,23878,9139,4600,328,6225,64165,15049,8205,3292,4134,30379,28334,29244,24967,353,18880,5870,7714,5773,27612,3050,2,875,7,12590,6251,35,3420,2864,2882,7737,12108,5683,3605,7327,8681,1763,2724,7,15268,1279,15873,379,4425,3,1215,1,5055,4,1,2,2,2,4568,1033,3828,2268,341,6438,3304,2646,103,4,1,320,841,2,4257,670,94,4019,8904,355,1,336,170,4,2579,1586,9591,4139,287,1281,590,2,1,920,459,32,104,581,2774,2,194,861,2843,786,1324,2,771,4,572,4,1,1,682,127,1686,4010,3,4,2,2931,251,3668,1205,2509,1875,2,874,2231,547,3369,580,457,136,19,3007,11,785,27,4642,941,4,134,91,2,2194,4,4,1030,79,633,237,376,4,3,2133,260,97,2447,318,73,1347,1937,513,24,87,7,2,645,7,4,495,6,764,21,1,1348,71,242,1294,617,3242,7,855,283,4,332,206,30,64,172,3593,665,502,140,113,454,191,56,549,223,2,1,3,2,3,7,942,3,113,253,287,372,1267,1367,167,323,313,305,29,3,2,2,2,1037,206,993,1,2,12,16,415,1,382,6,1478,514,301,1094,199,9,27,8,639,3,513,148,533,482,2,12,723,360,4,646,120,2,611,145,830,39,4,97,251,284,2,189,85,254,8,2,432,395,366,735,515,568,273,2,112,402,216,453,1936,1570,219,291,899,303,395,689,151,1282,439,11,282,287,629,750,4,827,41,500,9,1,128,867,56,246,272,5,253,225,123,456,593,768,9,8,63,299,147,1,251,879,821,190,790,565,404,404,77,909,317,299,97,266,137,269,2147,1,2,614,1,2,324,21142316,5,2253,739,4,2700,260,3,2650,587,5254,2,1558,3,2446,3,8640,159,921,111,2636,209,433,6040399,11629,2460528',kBL:'4lXh',kOPI:89978449};(function(){var a;((a=window.google)==null?0:a.stvsc)?google.kEI=_g.kEI:window.g</pre>
+        <p><em>Detected at: 2025-09-14 22:15:21</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>23. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?file=php%3A//filter/convert.base64-encode/resource%3Dindex.php" target="_blank">https://www.google.com?file=php%3A//filter/convert.base64-encode/resource%3Dindex.php</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - PHP filter wrapper in parameter 'file'</p>
+        <p><strong>Payload:</strong> <code>php://filter/convert.base64-encode/resource=index.php</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="VE7EGHQxm9wbn3g9_qAk4w">(function(){var _g={kEI:'IfHGaKKdOPasseMP_YaakA8',kEXPI:'0,202854,2,4051300,425603,290044,11106,5219175,11857,102,97,36811987,25366949,14110,57131,8045,6749,23879,7041,2098,4599,328,6225,1116,49460,13588,15050,8205,878,1,2,2411,4134,30379,28334,10903,43308,353,11781,6689,410,5870,7714,5773,10734,1845,6,4,2442,3830,8751,3050,2,2504,10968,6251,35,6284,2491,2,8126,2820,9288,5683,3605,593,17178,2724,7,635,6507,9405,1889,2,4,1604,11808,567,6025,1,4374,2,5255,1032,6090,347,9742,2646,103,4,1,321,841,2,3272,984,670,2260,1853,8174,730,355,1,4675,9592,437,39,3662,71,217,1279,591,2,1,1380,31,104,3044,311,2,193,862,2839,790,1324,2,771,4,572,4,1,1,682,127,5043,668,3,4,2,1666,1250,142,109,113,3555,1205,4384,2,874,25,1915,291,569,3342,583,459,136,19,3008,28,758,9,3346,1323,1170,2,2804,427,81,628,124,117,376,4,3,2133,259,98,503,1936,326,73,1347,157,83,1698,512,24,87,7,2,633,7,4,507,6,34,729,21,3,1346,72,242,487,806,618,2992,250,7,1138,4,536,24,72,172,4258,501,141,113,204,217,26,255,548,242,2,1,3,2,3,7,1039,541,275,121,1242,1367,490,313,305,29,3,2,2,2,1037,190,977,1,2,12,16,224,223,1,15,367,6,236,1007,235,817,1091,200,9,27,8,1302,534,534,685,385,4,621,84,36,2,611,145,869,4,349,273,201,339,8,2,827,366,1818,388,372,28,510,158,3727,87,204,1202,228,2,41,504,3,3,300,154,431,335,516,427,11,284,297,302,325,752,4,192,635,35,506,9,1,129,112,2,9,4,740,67,2,10,1,159,334,5,251,193,38,119,191,265,594,783,363,224,8,14,153,330,25,1345,615,928,887,1393,117,376,135,146,36,2304,1,2,107,766,21142318,5,2253,739,4,2701,259,3,2651,586,5254,2,1562,3,2442,3,7199,1436,164,1032,2451,185,3619847,5440576,2086746',kBL:'4lXh',kOPI:89978449};(function(){var a;((a=window.google)==null?0:a.stvsc)?google.kEI=_g</pre>
+        <p><em>Detected at: 2025-09-14 22:15:22</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>24. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?file=/.env" target="_blank">https://www.google.com?file=/.env</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Environment configuration in parameter 'file'</p>
+        <p><strong>Payload:</strong> <code>/.env</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="Ufmx2YWtA9KMLzHT8wjuqQ">(function(){var _g={kEI:'IvHGaL36J-69seMPvOScwAw',kEXPI:'0,202854,2,3947056,90133,85211,9707,344796,270476,19568,11106,5231032,102,98,68,32768208,4043710,25359336,7613,14110,22918,34213,8045,6749,23878,9140,4599,328,6225,64165,6748,8301,8205,3292,4134,30379,28334,22957,25947,5307,353,2268,9513,7099,5870,7714,5773,8977,18635,3050,2,4216,9256,6251,35,3420,2864,2491,2,8126,12108,5683,3605,16009,1762,1515,1209,7,7183,8085,1279,15874,4803,1222,1,4374,2,659,4,1,2,2,2,4584,1033,6437,2475,2,5295,7,1963,2646,103,4,1,321,841,2,974,3285,667,4113,8904,687,168,4,4172,9592,476,1460,2279,210,1280,591,2,1,1380,31,104,3355,2,194,861,2839,790,1324,2,771,4,572,4,1,1,681,128,5043,668,3,4,2,2916,251,112,1818,1738,1205,2369,144,1871,2,874,2231,547,3369,578,459,136,19,3007,30,766,27,2625,1013,1004,941,4,133,2900,321,817,237,2516,260,99,2437,326,73,27,938,383,1299,637,448,68,21,87,7,2,633,7,4,507,6,764,21,1,1419,242,1293,618,1765,2,1475,7,791,347,4,332,204,24,72,1960,1805,557,108,502,140,113,204,250,248,548,242,2,1,3,2,3,7,963,2,5,69,540,387,1251,1368,490,313,305,29,3,2,2,2,1037,314,853,1,2,12,16,447,1,382,6,1055,423,817,1092,199,9,27,8,1154,148,525,1228,385,4,621,86,34,2,611,145,869,4,348,159,316,339,8,2,1,432,394,366,1264,555,387,71,330,667,1600,324,1804,120,146,24,100,1103,227,2,41,811,153,439,28,2,2,1121,117,11,280,301,192,2,432,213,3,3,534,4,192,119,2,549,180,326,9,1,35,94,96,2,9,4,756,109,464,5,160,93,54,219,29,46,191,126,139,885,492,363,107,93,8,14,49,111,16,348,1243,28,82,77,2,3,732,1616,770,454,286,376,135,290,1005,1257,1,2,21143125,5,2253,739,4,2433,268,259,3,3237,4648,606,2,709,853,3,2442,3,8640,158,1036,1817,815,487,3,151,1937,6038464,11629,3007753,2086746',kBL:'4lXh',kOPI</pre>
+        <p><em>Detected at: 2025-09-14 22:15:23</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>25. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?file=/.htaccess" target="_blank">https://www.google.com?file=/.htaccess</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Apache configuration in parameter 'file'</p>
+        <p><strong>Payload:</strong> <code>/.htaccess</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="nURMcpPD0WRpn476gepGSQ">(function(){var _g={kEI:'I_HGaJeTF9vjseMPr_itoQE',kEXPI:'0,202854,2,83,3946974,90132,78813,16105,344796,247319,42725,11106,5231032,102,98,36811986,25366949,14110,65176,6749,23879,9139,4599,328,6225,50097,14068,15048,8206,3292,4134,30379,28334,54212,352,8614,3167,7099,5870,7714,5774,16794,10817,3050,2,422,13050,2801,4638,3,5,4,2255,2864,726,9893,12108,5683,3604,591,7245,3,8170,1763,2724,7,15268,1279,678,14629,567,378,4627,1020,1,4374,2,5255,1032,655,5782,9742,2646,103,4,1,320,842,2,347,3909,670,91,4022,975,9,7920,5031,1472,2,2,8116,1936,2279,211,1280,403,187,2,1,1380,31,104,3044,311,2,1055,2839,2114,2,1347,4,1,1,682,127,1686,1685,6,1552,767,3,4,2,817,2114,251,3668,1205,5,149,4,4,2344,9,5,1864,2,874,24,2207,569,3342,583,459,136,19,3008,21,774,27,2191,1129,710,8,4,600,941,4,4167,241,2516,357,2447,318,73,27,1321,1936,516,21,87,7,2,633,7,4,507,6,763,21,2,1348,71,242,1293,618,1765,2,1475,7,1138,4,560,72,172,1616,2534,108,501,141,113,219,195,48,240,548,124,99,2,1,3,2,3,7,1058,253,287,276,96,1266,1368,490,313,305,29,3,2,2,2,1037,1167,1,2,12,16,447,1,382,6,1478,1908,200,9,27,8,1154,149,533,1096,123,1010,120,2,611,144,870,4,349,273,14,2,136,49,339,8,2,827,366,425,2,73,235,1083,170,103,2,112,402,386,123,158,3728,258,8,24,900,303,1080,154,114,648,520,427,11,280,302,62,126,2,438,282,3,3,462,4,114,265,489,500,9,1,129,867,95,2,10,1,465,5,6,247,302,48,454,1039,338,363,378,21,329,1371,191,642,147,953,497,907,289,314,376,130,2359,1,2,1097,20726148,416078,5,2253,739,4,2701,259,3,3237,5254,2,1562,3,2442,3,8640,159,1032,1937,699,9,631,1318,3617889,4892782',kBL:'4lXh',kOPI:89978449};(function(){var a;((a=window.google)==null?0:a.stvsc)?google.kEI=_g.kEI:window.google=_g;}).call(this</pre>
+        <p><em>Detected at: 2025-09-14 22:15:23</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>26. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?file=/var/log/apache2/access.log" target="_blank">https://www.google.com?file=/var/log/apache2/access.log</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Apache access log in parameter 'file'</p>
+        <p><strong>Payload:</strong> <code>/var/log/apache2/access.log</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="0008eCdIyeN0F6xE-rGwZQ">(function(){var _g={kEI:'JPHGaPGjB8CYseMPkd_jqQo',kEXPI:'0,202854,2,4037189,48791,30022,16105,344796,94242,125568,27510,42724,11106,5219174,11858,102,98,36811986,25359337,7612,14110,8944,3004,53227,6750,23879,9139,4599,328,6225,64165,15048,50,8156,3292,4134,30379,28334,10903,12053,25339,608,5309,352,18470,410,5870,7714,5774,27611,3050,2,13472,2801,3450,35,3420,2864,10619,12108,3705,1978,3604,1083,6247,506,3,9933,2724,7,627,15920,680,14643,550,4806,200,1016,1,1552,8082,1033,2293,4144,9742,2646,103,4,1,320,842,2,4259,667,91,4022,8904,5031,9592,437,3989,1280,405,185,2,1,1380,31,104,3355,2,1055,36,2803,790,1324,2,771,4,572,4,1,1,682,127,3363,6,1549,793,3,4,2,1667,1249,250,113,3556,987,218,919,9,9,1586,1861,2,874,2231,569,3342,420,163,459,136,19,3007,22,774,4668,1153,1505,2143,312,241,1914,602,357,2447,318,73,1061,286,1938,512,24,729,7,4,507,6,40,724,21,1,141,1206,71,160,5,78,1293,618,3242,7,1138,4,536,32,64,172,4258,502,140,113,219,202,41,239,549,223,2,1,3,2,3,7,793,265,253,288,275,1362,517,851,490,313,306,28,3,2,2,2,1037,1167,1,2,12,16,447,1,382,6,107,728,204,123,81,235,164,347,306,1092,199,9,27,8,1302,525,1228,1010,120,2,602,153,870,4,348,156,132,2,185,339,8,2,149,678,366,722,528,569,272,2,113,400,217,293,11,147,1598,1910,220,264,26,900,43,2,1,256,231,2,329,522,155,1668,37,11,581,1196,183,4,114,748,180,326,9,1,129,867,109,464,5,251,305,501,593,784,60,309,393,18,5,811,45,428,208,1,184,614,603,243,36,162,291,481,901,21,588,376,139,281,2135,1,2,636,1,2,21142618,5,2253,739,4,2433,268,259,3,3237,5254,2,1558,3,2446,3,3058,2816,2766,159,923,240,2,1687,816,9,495,1963,72',kBL:'4lXh',kOPI:89978449};(function(){var a;((a=window.google)==null?0:a.stvsc)?google.kEI=_g.kEI:win</pre>
+        <p><em>Detected at: 2025-09-14 22:15:24</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>27. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://www.google.com?file=/var/log/nginx/access.log" target="_blank">https://www.google.com?file=/var/log/nginx/access.log</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Nginx access log in parameter 'file'</p>
+        <p><strong>Payload:</strong> <code>/var/log/nginx/access.log</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en-IN"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="akwAeEuJCVp_hMrR7FkldQ">(function(){var _g={kEI:'JPHGaNapM-ugnesPnZKcmAs',kEXPI:'0,202854,2,4037189,14112,64701,360901,186856,103188,11106,5231033,101,97,32768278,4043709,25345987,20962,14110,57130,8044,6751,23879,7041,2098,4599,328,6225,64165,6748,8300,8206,3292,4134,30379,28334,10903,37414,5894,353,4099,14781,5870,7714,5774,18858,8753,3050,2,1667,2549,9256,6251,35,1153,3,5,4,2255,2864,10620,12107,5683,3605,593,6734,10444,2724,7,631,11450,4466,14889,418,566,2118,5,2,4,2678,1219,1,8903,727,1033,6437,2475,2,7265,2646,103,4,1,321,841,2,346,2915,998,667,4113,8904,3443,1588,9592,438,38,3736,214,1280,403,187,2,1,1380,31,104,1120,2235,2,1055,35,2544,260,2114,2,1347,4,1,1,681,128,5043,668,3,4,2,538,4,4,1,1,2368,142,109,1930,1738,1205,154,4,4,738,9,9,1591,5,1870,2,874,23,1646,3,559,569,3342,420,165,457,136,19,3007,27,760,9,3346,1322,1080,73,2434,4,4,1522,122,115,376,4,3,1531,602,259,100,501,213,1723,326,73,1348,1936,516,21,87,7,2,633,7,4,507,6,764,20,2,1418,243,487,806,618,3242,7,807,331,4,331,205,32,66,4428,502,140,113,211,210,41,239,549,242,2,1,3,2,3,7,1039,540,276,96,1266,1368,492,311,305,29,3,2,2,2,1037,1167,1,2,12,16,447,1,382,6,1039,123,316,164,213,440,965,127,199,9,27,8,1302,525,1096,132,360,4,326,320,120,2,602,154,869,4,97,251,172,112,2,189,85,254,8,2,149,678,365,676,575,569,387,64,336,510,11,147,3692,4,31,55,3,1,206,26,96,1107,270,810,158,1634,71,11,284,297,302,1077,4,374,494,500,9,1,128,867,56,182,336,5,159,92,48,304,454,1377,335,28,150,2,48,8,14,176,295,1013,394,838,652,54,44,360,481,1510,376,130,434,2035,1,2,614,1,2,20726517,416079,5,2253,739,4,2700,260,3,3237,5254,2,1562,3,2442,3,5871,2764,163,1033,2635,641,1319,111,468,42,94,8483849,187117,1674931',kBL:'4lXh',kOPI:89978449};(fun</pre>
+        <p><em>Detected at: 2025-09-14 22:15:25</em></p>
+    </div>
+
+    <footer style="margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; font-size: 0.9em; color: #777;">
+        <p>Report generated by Advanced Vulnerability Scanner</p>
+        <p>Note: This is an automated report. Please verify all findings before taking action.</p>
+    </footer>
+</body>
+</html>

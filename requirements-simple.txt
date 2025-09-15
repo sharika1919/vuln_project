@@ -1,0 +1,8 @@
+# Required tools (install with your package manager):
+# - nikto
+# - nmap
+# - python3-venv (for virtual environment)
+
+# Python dependencies
+requests>=2.25.1
+urllib3>=1.26.5

