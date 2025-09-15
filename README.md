@@ -1,58 +1,115 @@
-# AI-Powered Reconnaissance Tool
+# Vulnerability Scanner and Auto Scanner
 
-A next-generation, AI-enhanced reconnaissance solution that combines multiple OSINT and enumeration tools to provide comprehensive target discovery and analysis.
+A powerful security scanning solution that combines automated vulnerability detection with intelligent scanning capabilities. This project includes two main components:
+
+1. **Vulnerability Scanner** (`vuln_scanner.py`): A focused tool for detecting security vulnerabilities in web applications.
+2. **Auto Scanner** (`auto_scanner_simple.py`): An automated scanner that integrates multiple security tools for comprehensive vulnerability assessment.
 
 ## 🔍 Overview
 
-This AI-powered reconnaissance tool is designed to automate and enhance the process of information gathering by integrating multiple security tools with machine learning capabilities. It provides a unified interface for comprehensive target discovery, from subdomain enumeration to endpoint discovery and technology identification.
+This project provides a comprehensive security scanning solution that combines automated vulnerability detection with intelligent scanning capabilities. The `vuln_scanner.py` focuses on detecting specific web vulnerabilities, while `auto_scanner_simple.py` provides a more comprehensive scanning solution by integrating multiple open-source security tools.
 
 ## 🚀 Key Features
 
-- **AI-Powered Target Discovery**: Uses machine learning to identify and prioritize high-value targets
-- **Comprehensive Enumeration**: Combines multiple reconnaissance tools for thorough assessment
-- **Smart Target Analysis**: AI analyzes and correlates data from multiple sources
-- **Endpoint Discovery**: Identifies interesting endpoints and API endpoints
-- **Technology Stack Detection**: Identifies technologies used by the target
-- **Demo Mode**: Special mode for presentations and testing with example targets
+### Vulnerability Scanner
+- **SQL Injection Detection**: Advanced detection of SQL injection vulnerabilities with reduced false positives
+- **XSS Detection**: Identifies potential Cross-Site Scripting vulnerabilities
+- **Directory Traversal**: Checks for path traversal vulnerabilities
+- **Sensitive Data Exposure**: Identifies potential information leaks
+- **HTML Reporting**: Generates detailed HTML reports of findings
 
-## 🛠️ Integrated Tools
+### Auto Scanner
+- **Subdomain Discovery**: Finds subdomains using Subfinder
+- **Cloud Service Enumeration**: Identifies cloud services and configurations
+- **Containerized Scanning**: Supports Docker-based tool execution
+- **Smart Target Analysis**: Identifies well-known secure sites to reduce false positives
+- **Comprehensive Reporting**: Saves detailed scan results for analysis
+
+## 🛠️ Integrated Open Source Tools (auto_scanner_simple.py)
 
 ### 1. **Subfinder**
-- **Purpose**: Subdomain discovery tool
-- **Why we use it**: Fast and efficient subdomain enumeration
-- **AI Enhancement**: Analyzes subdomain patterns to identify high-value targets
+- **Purpose**: Fast and efficient subdomain discovery
+- **Usage**: Used to enumerate subdomains of the target domain
+- **Installation**: `go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest`
+- **Integration**: Automatically discovers subdomains as part of the scanning process
 
-### 2. **Amass**
-- **Purpose**: In-depth DNS enumeration and network mapping
-- **Why we use it**: Comprehensive subdomain discovery and mapping
-- **AI Enhancement**: Correlates findings with other data sources
+### 2. **Porch Pirate**
+- **Purpose**: Cloud service enumeration and reconnaissance
+- **Usage**: Identifies cloud services and potentially sensitive configurations
+- **Installation**: `pip install porch-pirate`
+- **Integration**: Scans for cloud service configurations and potential leaks
 
-### 3. **HTTPX**
-- **Purpose**: Fast and versatile HTTP toolkit
-- **Why we use it**: Validates and analyzes HTTP services
-- **AI Enhancement**: Prioritizes interesting endpoints
+### 3. **Docker**
+- **Purpose**: Containerization for security tools
+- **Usage**: Runs security tools in isolated containers
+- **Installation**: [Docker Installation Guide](https://docs.docker.com/get-docker/)
+- **Integration**: Used to run tools like ReNgine and Osmedeus in containers
 
-### 4. **WaybackURLs & GAU**
-- **Purpose**: Historical URL discovery
-- **Why we use it**: Finds archived URLs and endpoints
-- **AI Enhancement**: Identifies potentially interesting endpoints
+### 4. **ReNgine** (via Docker)
+- **Purpose**: Comprehensive web application scanner
+- **Usage**: Performs in-depth security scanning of web applications
+- **Installation**: Requires Docker
+- **Integration**: Called automatically for comprehensive scanning when available
 
-## 🤖 AI/ML Components
+### 5. **Osmedeus** (via Docker)
+- **Purpose**: Automated security tool for reconnaissance and vulnerability scanning
+- **Usage**: Performs automated security scanning
+- **Installation**: Requires Docker
+- **Integration**: Used for additional scanning capabilities when available
 
-### 1. **Target Intelligence Analysis**
-- Analyzes target characteristics (tech stack, services, etc.)
-- Identifies high-value targets and interesting endpoints
-- Correlates data from multiple sources
+## 🔧 Installation
 
-### 2. **Endpoint Analysis**
-- Identifies potentially sensitive endpoints
-- Categorizes endpoints based on functionality
-- Highlights endpoints that may require further investigation
+### Prerequisites
+- Python 3.8+
+- Go 1.17+ (for Subfinder)
+- Docker (optional, for containerized tools)
+- jq (for JSON processing)
 
-### 3. **Smart Template Selection**
-- Dynamically selects and prioritizes scanning templates
-- Adapts scanning strategy based on initial findings
-- Optimizes scan time while maintaining thorough coverage
+### Setup
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/sharika1919/vuln_project.git
+cd vuln_project
+```
+
+2. **Install Python dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+3. **Install required tools**
+```bash
+# Install Subfinder
+go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+
+# Install Porch-pirate
+pip install porch-pirate
+
+# Install jq (macOS)
+brew install jq
+# Or on Ubuntu/Debian: sudo apt-get install jq
+```
+
+## 🚀 Usage
+
+### Vulnerability Scanner
+```bash
+# Run vulnerability scan on a target URL
+python3 vuln_scanner.py http://example.com
+
+# Save results to a specific directory
+python3 vuln_scanner.py http://example.com --output custom_output_dir
+```
+
+### Auto Scanner
+```bash
+# Basic scan
+python3 auto_scanner_simple.py example.com
+
+# Scan with specific output directory
+python3 auto_scanner_simple.py example.com --output custom_scan_results
+```
 
 ## 🚀 Quick Start
 
@@ -110,94 +167,69 @@ python3 auto_scanner.py example.com --demo
 
 ```
 ┌───────────────────────────────────────────────────────────────┐
-│                    AI Security Scanner                        │
-├───────────────┬───────────────────────┬──────────────────────┤
-│  Recon Phase  │  Vulnerability Phase  │   Analysis Phase     │
-│  • Subfinder  │   • Nuclei Scanning   │  • AI Risk Scoring   │
-│  • OSINT      │   • Template Selection│  • False +ve Filter  │
-│  • Enumeration│   • Custom Templates  │  • Report Generation │
-└───────┬───────┴───────────┬───────────┴──────────┬───────────┘
-        │                   │                       │
-        ▼                   ▼                       ▼
-┌───────────────────────────────────────────────────────────────┐
-│                     AI Engine & Analysis                      │
-│  • Target Profiling  • Vulnerability Correlation             │
-│  • Risk Assessment  • Report Generation                      │
-└───────────────────────────────────────────────────────────────┘
+│                  Vulnerability Scanner                        │
+├───────────────────────┬───────────────────────────────────────┤
+│  Vulnerability Tests  │  Auto Scanner Integration            │
+│  • SQL Injection     │  • Subdomain Discovery (Subfinder)    │
+│  • XSS Detection     │  • Cloud Service Enumeration          │
+│  • Directory Traversal│  • Containerized Tool Execution      │
+│  • Sensitive Data    │  • Comprehensive Reporting            │
+└───────────┬──────────┴───────────────────────────┬───────────┘
+            │                                       │
+            ▼                                       ▼
+┌─────────────────────────┐           ┌─────────────────────────┐
+│  HTML Report Generator  │           │  Scan Results Analysis  │
+│  • Detailed Findings    │           │  • Results Correlation  │
+│  • Vulnerability Details│           │  • False Positive Check │
+│  • Remediation Guidance │           └───────────────┬─────────┘
+└─────────────────────────┘                           │
+            │                                       │
+            └───────────────────────────────────────┘
 ```
-
-## 🔍 Real-World Applications
-
-### 1. **Enterprise Security**
-- Continuous security monitoring of web applications
-- Pre-production security testing
-- Third-party vendor risk assessment
-
-### 2. **Bug Bounty Programs**
-- Automated initial reconnaissance
-- Vulnerability discovery and validation
-- Attack surface mapping
-
-### 3. **Compliance & Auditing**
-- Automated compliance checking
-- Security posture assessment
-- Risk management and reporting
-
-### 4. **Security Research**
-- New vulnerability discovery
-- Security tool testing
-- Attack pattern analysis
-
-## 🎯 Why AI in Security Scanning?
-
-1. **Reduced False Positives**
-   - AI helps distinguish between actual vulnerabilities and false positives
-   - Context-aware analysis reduces noise in scan results
-
-2. **Intelligent Scanning**
-   - Adapts scanning strategy based on target characteristics
-   - Focuses on high-risk areas first
-
-3. **Automated Triage**
-   - Prioritizes findings based on potential impact
-   - Provides actionable insights and remediation guidance
-
-4. **Efficiency**
-   - Reduces manual effort in vulnerability assessment
-   - Speeds up the security review process
 
 ## 📊 Output & Reporting
 
-The scanner generates comprehensive reports in the `scan_results/` directory, including:
+### Vulnerability Scanner
+Generates detailed HTML reports in the `reports` directory with:
+- Vulnerability details and severity levels
+- Affected URLs and parameters
+- Proof of concept for identified issues
+- Remediation recommendations
 
-- **AI Scan Summary**: Executive overview with risk assessment
-- **Vulnerability Analysis**: Detailed findings with risk scores
-- **Template Selection**: AI's reasoning for template choices
-- **Executive Summary**: Business-level security assessment
+### Auto Scanner
+Saves comprehensive scan results in the `scan_results` directory, including:
+- Subdomain enumeration results
+- Cloud service configurations
+- Security scan findings
+- Tool-specific output files
 
-### Example Report Structure
-```
-scan_results/
-└── example.com-2025-09-14_11-23-10/
-    ├── ai_scan_summary.json        # Complete scan results
-    ├── ai_vulnerability_analysis.json  # AI-analyzed vulnerabilities
-    ├── ai_template_selection.json  # AI template selection reasoning
-    ├── executive_summary.txt       # Business-friendly report
-    └── scan.log                   # Detailed scan log
-```
-
-## 🛡️ Security Considerations
+## 🔒 Security Considerations
 
 - **Ethical Use**: Only scan systems you own or have permission to test
-- **Rate Limiting**: Built-in rate limiting to avoid overwhelming targets
-- **Sensitive Data**: Be cautious when scanning production environments
-- **Legal Compliance**: Ensure compliance with local laws and regulations
+- **Rate Limiting**: Be mindful of target server load
+- **Sensitive Data**: Review scan results carefully for sensitive information
+- **Legal Compliance**: Ensure compliance with all applicable laws and regulations
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) for details on how to submit pull requests.
+Contributions are welcome! Please follow these steps:
 
-## 📄 License
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Thanks to all the open-source tools that make this project possible
+- Special thanks to the security community for their contributions and support
+
+## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
