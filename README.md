@@ -213,11 +213,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- Project Discovery for Nuclei and Subfinder
-- The open-source security community
-- All contributors and testers
 
 ## Output Structure
 
