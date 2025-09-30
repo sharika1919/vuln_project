@@ -113,11 +113,6 @@ python3 auto_scanner_simple.py example.com --output custom_scan_results
 
 ## 🚀 Quick Start
 
-### Prerequisites
-- Python 3.8+
-- Go 1.17+ (for Nuclei and Subfinder)
-- jq (for JSON processing)
-
 ### Installation
 
 1. **Clone the repository**
@@ -126,26 +121,21 @@ git clone https://github.com/sharika1919/hack_proj.git
 cd hack_proj
 ```
 
-2. **Install Python dependencies**
+2. **Run the installation script**
 ```bash
-pip install -r requirements.txt
+# Make the script executable
+chmod +x install_tools.sh
+
+# Run the installation script
+./install_tools.sh
 ```
 
-3. **Install required tools**
-```bash
-# Install Nuclei
-go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
-
-# Install Subfinder
-go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-
-# Install Porch-pirate
-pip install porch-pirate
-
-# Install jq (macOS)
-brew install jq
-# Or on Ubuntu/Debian: sudo apt-get install jq
-```
+The script will automatically install all required dependencies including:
+- Python 3.8+ and pip
+- Go and required Go tools (Subfinder, Amass, httpx, etc.)
+- jq for JSON processing
+- Python packages from requirements.txt
+- Porch-pirate via pipx
 
 ### Basic Usage
 
@@ -259,8 +249,7 @@ scan_results/
 
 - **Cross-platform compatibility**: Works on Windows, macOS, and Linux
 - **Professional logging**: Separate console and file logs with configurable levels
-- **Parallel processing**: Concurrent Nuclei scans for faster execution
-- **Intelligent subdomain handling**: Extracts subdomains from Subfinder and scans each with Nuclei
+- **Intelligent subdomain handling**: Extracts subdomains from Subfinder for comprehensive scanning
 - **Comprehensive reporting**: JSON summary with vulnerability breakdown by severity
 - **Error handling**: Graceful degradation when tools are missing
 - **Configurable settings**: JSON-based configuration system
