@@ -16,7 +16,7 @@ This project provides a comprehensive security scanning solution that combines a
 - **XSS Detection**: Identifies potential Cross-Site Scripting vulnerabilities
 - **Directory Traversal**: Checks for path traversal vulnerabilities
 - **Sensitive Data Exposure**: Identifies potential information leaks
-- **HTML Reporting**: Generates detailed HTML reports of findings
+- **HTML Reporting**: Generates detailed HTML reports of finding
 
 ### Auto Scanner
 - **Subdomain Discovery**: Finds subdomains using Subfinder
@@ -59,37 +59,28 @@ This project provides a comprehensive security scanning solution that combines a
 
 ## 🔧 Installation
 
-### Prerequisites
-- Python 3.8+
-- Go 1.17+ (for Subfinder)
-- Docker (optional, for containerized tools)
-- jq (for JSON processing)
-
-### Setup
-
 1. **Clone the repository**
 ```bash
 git clone https://github.com/sharika1919/vuln_project.git
 cd vuln_project
 ```
 
-2. **Install Python dependencies**
+2. **Run the installation script**
 ```bash
-pip install -r requirements.txt
+# Make the script executable
+chmod +x install_tools.sh
+
+# Run the installation script
+./install_tools.sh
 ```
 
-3. **Install required tools**
-```bash
-# Install Subfinder
-go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+The script will automatically install all required dependencies including:
 
-# Install Porch-pirate
-pip install porch-pirate
-
-# Install jq (macOS)
-brew install jq
-# Or on Ubuntu/Debian: sudo apt-get install jq
-```
+Python 3.8+ and pip
+Go and required Go tools (Subfinder, Amass, httpx, etc.)
+jq for JSON processing
+Python packages from requirements.txt
+Porch-pirate via pipx
 
 ## 🚀 Usage
 
