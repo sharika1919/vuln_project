@@ -207,8 +207,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Thanks to all the open-source tools that make this project possible
-- Special thanks to the security community for their contributions and support
+- Thanks to my team lead and teammates for their invaluable support and collaboration in shaping the hackathon idea.
 
 ## 📝 License
 
